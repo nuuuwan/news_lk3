@@ -7,8 +7,8 @@ import moviepy.editor as mp
 from utils import timex
 from wordcloud import WordCloud
 
-from news_lk2._utils import log
-from news_lk2.core.filesys import DIR_REPO
+from news_lk3._utils import log
+from news_lk3.core.filesys import DIR_REPO
 
 DIR_WORDCLOUDS = os.path.join(DIR_REPO, 'wordclouds')
 

@@ -2,9 +2,9 @@ import os
 
 from utils import JSONFile
 
-from news_lk2._utils import log
-from news_lk2.core.filesys import DIR_REPO
-from news_lk2.core.trends import filter_articles, get_thing_ent_set
+from news_lk3._utils import log
+from news_lk3.core.filesys import DIR_REPO
+from news_lk3.core.trends import filter_articles, get_thing_ent_set
 
 N_LATEST = 1_000
 

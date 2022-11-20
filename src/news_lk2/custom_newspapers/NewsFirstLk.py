@@ -2,7 +2,7 @@ import os
 
 from utils import timex
 
-from news_lk2.core import AbstractNewsPaper
+from news_lk3.core import AbstractNewsPaper
 
 TIME_RAW_FORMAT = '%d %b, %Y\t| %I:%M %p'
 H1_CLASS = 'text-left w-600 text-foxblue hidden-xs hidden-sm artical-hd-out'

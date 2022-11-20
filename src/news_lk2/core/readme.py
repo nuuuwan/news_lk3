@@ -2,9 +2,9 @@ import os
 
 from utils import File, timex
 
-from news_lk2._constants import DELIM_MD, DIR_TMP_BASE, URL_GITHUB_BASE
-from news_lk2._utils import log
-from news_lk2.core.filesys import DIR_REPO
+from news_lk3._constants import DELIM_MD, DIR_TMP_BASE, URL_GITHUB_BASE
+from news_lk3._utils import log
+from news_lk3.core.filesys import DIR_REPO
 
 
 def group_by_time_and_newspaper(articles, current_time):

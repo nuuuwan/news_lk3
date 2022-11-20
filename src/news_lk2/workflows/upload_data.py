@@ -1,12 +1,12 @@
-from news_lk2._utils import log
-from news_lk2.core import Article
-from news_lk2.core.articles_summary import build_articles_summary
-from news_lk2.core.filesys import git_checkout
-from news_lk2.core.news_wordcloud import (build_wordcloud,
+from news_lk3._utils import log
+from news_lk3.core import Article
+from news_lk3.core.articles_summary import build_articles_summary
+from news_lk3.core.filesys import git_checkout
+from news_lk3.core.news_wordcloud import (build_wordcloud,
                                           build_wordcloud_animation)
-from news_lk2.core.readme import build_readme_summary
-from news_lk2.core.trends import build_trending_summary
-from news_lk2.core.upload_data import upload_data
+from news_lk3.core.readme import build_readme_summary
+from news_lk3.core.trends import build_trending_summary
+from news_lk3.core.upload_data import upload_data
 
 DELIM_MD = '\n' * 2
 MAX_ARTICLES_TO_UPLOAD = 200

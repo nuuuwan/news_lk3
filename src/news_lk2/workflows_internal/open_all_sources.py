@@ -1,6 +1,6 @@
 import os
 
-from news_lk2.custom_newspapers import newspaper_class_list
+from news_lk3.custom_newspapers import newspaper_class_list
 
 
 def main():

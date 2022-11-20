@@ -2,7 +2,7 @@ import os
 
 from utils import timex
 
-from news_lk2.core import AbstractNewsPaper
+from news_lk3.core import AbstractNewsPaper
 
 URL_BASE = 'http://dailynews.lk'
 TIME_RAW_FORMAT = '%A, %B %d, %Y - %H:%M'

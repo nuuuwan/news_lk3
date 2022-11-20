@@ -1,8 +1,8 @@
 import time
 import unittest
 
-from news_lk2.core.Translate import LANG_LIST
-from news_lk2.custom_newspapers import (AdaDeranaLk, CeylonTodayLk,
+from news_lk3.core.Translate import LANG_LIST
+from news_lk3.custom_newspapers import (AdaDeranaLk, CeylonTodayLk,
                                         DailyNewsLk, DBSJeyarajCom, DivainaLk,
                                         IslandLk, newspaper_class_list)
 

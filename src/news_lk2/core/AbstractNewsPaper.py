@@ -4,11 +4,11 @@ from abc import ABC
 from bs4 import BeautifulSoup
 from utils import dt, mr, timex
 
-from news_lk2._utils import log
-from news_lk2.base.WWW import WWW
-from news_lk2.core import Translate
-from news_lk2.core.Article import Article
-from news_lk2.core.filesys import get_article_file
+from news_lk3._utils import log
+from news_lk3.base.WWW import WWW
+from news_lk3.core import Translate
+from news_lk3.core.Article import Article
+from news_lk3.core.filesys import get_article_file
 
 MIN_ARTICLE_HTML_SIZE = 1_000
 MIN_CHARS_IN_BODY_LINE = 60

@@ -2,7 +2,7 @@ import os
 
 from utils import File, hashx, timex
 
-DIR_CUSTOM_NEWSPAPERS = 'src/news_lk2/custom_newspapers'
+DIR_CUSTOM_NEWSPAPERS = 'src/news_lk3/custom_newspapers'
 INIT_FILE_ONLY = '__init__.py'
 
 
@@ -28,7 +28,7 @@ def build_init(class_name_list):
 
     lines += list(
         map(
-            lambda x: f'from news_lk2.custom_newspapers.{x} import {x}',
+            lambda x: f'from news_lk3.custom_newspapers.{x} import {x}',
             class_name_list,
         )
     )

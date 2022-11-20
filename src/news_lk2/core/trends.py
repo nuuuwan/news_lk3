@@ -5,9 +5,9 @@ import re
 from fuzzywuzzy import fuzz
 from utils import JSONFile, timex
 
-from news_lk2._utils import log
-from news_lk2.core.ents import THING_ENTS
-from news_lk2.core.filesys import DIR_REPO
+from news_lk3._utils import log
+from news_lk3.core.ents import THING_ENTS
+from news_lk3.core.filesys import DIR_REPO
 
 MIN_FUZZ_RATIO_FOR_GROUP = 85
 HALF_LIFE_DAYS = 1

@@ -1,6 +1,6 @@
 import os
 
-from news_lk2.core import AbstractNewsPaper
+from news_lk3.core import AbstractNewsPaper
 
 
 class TamilMirrorLk(AbstractNewsPaper):
