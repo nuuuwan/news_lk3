@@ -37,7 +37,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: 'data'
-        token: "${{ secrets.REPO_DATA_TOKEN }}"
+        token: "${{ secrets.REPO_TOKEN }}"
 
     - name: Copy data, and push to repo branch data
       run: |
