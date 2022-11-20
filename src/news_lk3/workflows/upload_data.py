@@ -8,9 +8,6 @@ from news_lk3.core.readme import build_readme_summary
 from news_lk3.core.trends import build_trending_summary
 from news_lk3.core.upload_data import upload_data
 
-DELIM_MD = '\n' * 2
-MAX_ARTICLES_TO_UPLOAD = 200
-
 
 def main(is_test_mode=False):
     log.debug(f'{is_test_mode=}')
