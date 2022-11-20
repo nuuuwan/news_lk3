@@ -4,10 +4,10 @@ from utils import Git, hashx
 
 from news_lk3._utils import log
 
-REPO_NAME = 'news_lk3'
-GIT_REPO_URL = f'https://github.com/nuuuwan/{REPO_NAME}.git'
+REPO_DATA_NAME = 'news_lk3'
+GIT_REPO_URL = f'https://github.com/nuuuwan/{REPO_DATA_NAME}.git'
 DIR_ROOT = '/tmp'
-DIR_REPO = os.path.join(DIR_ROOT, REPO_NAME)
+DIR_REPO = os.path.join(DIR_ROOT, REPO_DATA_NAME)
 DIR_ARTICLES = os.path.join(
     DIR_REPO,
     'articles',
