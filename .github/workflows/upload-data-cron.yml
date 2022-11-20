@@ -36,6 +36,7 @@ jobs:
     - name: Checkout repo branch data
       uses: actions/checkout@v2
       with:
+        repository: 'nuuuwan/news_lk3_data'
         ref: 'data'
         token: "${{ secrets.REPO_TOKEN }}"
 
