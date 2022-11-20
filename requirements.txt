@@ -1,0 +1,13 @@
+# Auto Generated
+bs4
+pytest
+selenium
+utils-nuuuwan
+spacy
+deep-translator
+fuzzywuzzy
+matplotlib
+wordcloud
+python-Levenshtein
+imageio
+moviepy
