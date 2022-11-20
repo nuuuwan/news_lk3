@@ -34,11 +34,11 @@ jobs:
         python src/news_lk3/workflows/upload_data.py
 
     - name: Checkout repo branch data
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: 'nuuuwan/news_lk3_data'
-        ref: 'data'
         token: "${{ secrets.REPO_TOKEN }}"
+        ref: 'data'        
 
     - name: Copy data, and push to repo branch data
       run: |
