@@ -21,7 +21,6 @@ def group_by_time_and_newspaper(articles, current_time):
             [timex.SECONDS_IN.WEEK, 'Last Week'],
             [None, 'All Time'],
         ]:
-
             if time_window is None or article_age < time_window:
                 if label not in idx:
                     idx[label] = {}

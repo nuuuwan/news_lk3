@@ -74,7 +74,6 @@ def build_text_idx(
 ):
     text_idx = {}
     for target_lang in LANG_LIST:
-
         text_idx[target_lang] = dict(
             title=translate(source_lang, target_lang, original_title),
             author=translate(source_lang, target_lang, original_author),
