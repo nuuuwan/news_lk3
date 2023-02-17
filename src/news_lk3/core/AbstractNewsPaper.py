@@ -75,9 +75,11 @@ class AbstractNewsPaper(ABC):
     @classmethod
     def parse_time_ut(cls, soup):
         meta_time = soup.find('meta', {'itemprop': 'datePublished'})
-        return TimeFormat(TIME_RAW_FORMAT).parse(
-            meta_time.get('content').strip()
-        ).ut
+        return (
+            TimeFormat(TIME_RAW_FORMAT)
+            .parse(meta_time.get('content').strip())
+            .ut
+        )
 
     @classmethod
     def parse_title(cls, soup):

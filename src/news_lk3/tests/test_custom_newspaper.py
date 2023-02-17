@@ -1,7 +1,6 @@
 import time
 import unittest
 
-from news_lk3.core.Translate import LANG_LIST
 from news_lk3.custom_newspapers import (AdaDeranaLk, CeylonTodayLk,
                                         DailyNewsLk, DBSJeyarajCom, DivainaLk,
                                         IslandLk, newspaper_class_list)
@@ -54,12 +53,11 @@ def helper_test_parse(test_case, newspaper_class_list):
         test_case.assertGreater(
             len(article.original_title), MIN_ARTICLE_TITLE_LEN
         )
-        # text_idx
-        for lang in LANG_LIST:
-            test_case.assertIn(lang, article.text_idx)
-            lang_text_idx = article.text_idx[lang]
-            test_case.assertIn('title', lang_text_idx)
-            test_case.assertIn('body_lines', lang_text_idx)
+
+        # original_body
+        test_case.assertGreater(
+            len(article.original_body), MIN_ARTICLE_TITLE_LEN
+        )
 
         print(f'{delta_time:.1f}s\t{newspaper_id}')
         test_case.assertLess(
