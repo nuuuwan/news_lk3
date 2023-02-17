@@ -56,15 +56,12 @@ def build_articles_summary_only(articles):
 
 
 def build_articles_summary_latest(articles_summary):
-    articles_summary_latest_file = os.path.join(
-        DIR_REPO, 'articles.summary.latest.json'
-    )
+    file_path = os.path.join(DIR_REPO, 'articles.summary.latest.json')
     articles_summary_latest = articles_summary[:N_LATEST]
-    JSONFile(articles_summary_latest_file).write(articles_summary_latest)
-    n_articles_summary_latest = len(articles_summary_latest)
+    JSONFile(file_path).write(articles_summary_latest)
+    n = len(articles_summary_latest)
     log.info(
-        f'Wrote {n_articles_summary_latest} articles '
-        + f'to {articles_summary_latest_file}',
+        f'Wrote {n} articles to {file_path}',
     )
 
 

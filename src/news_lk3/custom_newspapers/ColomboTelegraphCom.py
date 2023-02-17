@@ -1,8 +1,8 @@
 import os
 
+from utils import TimeFormat
 
 from news_lk3.core import AbstractNewsPaper
-from utils import TimeFormat
 
 TIME_RAW_FORMAT = '%Y-%m-%dT%H:%M:%S%z'
 

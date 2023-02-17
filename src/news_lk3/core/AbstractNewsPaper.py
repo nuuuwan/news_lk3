@@ -1,8 +1,8 @@
 import os
 from abc import ABC
-from utils import String, TimeFormat, mr
-from bs4 import BeautifulSoup
 
+from bs4 import BeautifulSoup
+from utils import String, TimeFormat, mr
 
 from news_lk3._utils import log
 from news_lk3.base.WWW import WWW

@@ -1,4 +1,4 @@
-from utils import JSONFile, TIME_FORMAT_TIME_ID, TIME_FORMAT_TIME
+from utils import TIME_FORMAT_TIME, TIME_FORMAT_TIME_ID, JSONFile
 
 from news_lk3._constants import WORDS_PER_MINUTE
 from news_lk3._utils import log

@@ -5,10 +5,13 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
-USER_AGENT = (
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:65.0) '
-    + 'Gecko/20100101 Firefox/65.0'
+USER_AGENT = ' '.join(
+    [
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:65.0)',
+        'Gecko/20100101 Firefox/65.0',
+    ]
 )
+
 ENCODING = 'utf-8'
 SELENIUM_SCROLL_REPEATS = 3
 SELENIUM_SCROLL_WAIT_TIME = 0.5

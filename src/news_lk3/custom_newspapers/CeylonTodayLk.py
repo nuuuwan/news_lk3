@@ -1,8 +1,8 @@
 import os
 
+from utils import TIMEZONE_OFFSET, TimeFormat
 
 from news_lk3.core import AbstractNewsPaper
-from utils import TimeFormat, TIMEZONE_OFFSET
 
 TIME_RAW_FORMAT = '%Y-%m-%dT%H:%M:%S+05:30'
 

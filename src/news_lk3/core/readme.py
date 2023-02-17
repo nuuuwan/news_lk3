@@ -1,10 +1,19 @@
 import os
 
-from utils import File, Time, TIME_FORMAT_TIME, SECONDS_IN
+from utils import SECONDS_IN, TIME_FORMAT_TIME, File, Time
 
 from news_lk3._constants import DELIM_MD, DIR_TMP_BASE, URL_GITHUB_BASE
 from news_lk3._utils import log
 from news_lk3.core.filesys import DIR_REPO
+
+TIME_AND_LABELS = [
+    [SECONDS_IN.MINUTE * 30, 'Last 30 Minutes'],
+    [SECONDS_IN.HOUR, 'Last Hour'],
+    [SECONDS_IN.HOUR * 3, 'Last 3 Hours'],
+    [SECONDS_IN.DAY, 'Last 24 Hours'],
+    [SECONDS_IN.WEEK, 'Last Week'],
+    [None, 'All Time'],
+]
 
 
 def group_by_time_and_newspaper(articles, current_time):
@@ -13,21 +22,12 @@ def group_by_time_and_newspaper(articles, current_time):
         time_ut = article.time_ut
         newspaper_id = article.newspaper_id
         article_age = current_time - time_ut
-        for [time_window, label] in [
-            [SECONDS_IN.MINUTE * 30, 'Last 30 Minutes'],
-            [SECONDS_IN.HOUR, 'Last Hour'],
-            [SECONDS_IN.HOUR * 3, 'Last 3 Hours'],
-            [SECONDS_IN.DAY, 'Last 24 Hours'],
-            [SECONDS_IN.WEEK, 'Last Week'],
-            [None, 'All Time'],
-        ]:
-            if time_window is None or article_age < time_window:
-                if label not in idx:
-                    idx[label] = {}
-                if newspaper_id not in idx[label]:
-                    idx[label][newspaper_id] = []
-                idx[label][newspaper_id].append(article)
-
+        for [time_window, label] in TIME_AND_LABELS:
+            if time_window is not None and article_age >= time_window:
+                continue
+            idx[label] = idx.get(label, {})
+            idx[label][newspaper_id] = idx[label].get(newspaper_id, [])
+            idx[label][newspaper_id].append(article)
     return idx
 
 
