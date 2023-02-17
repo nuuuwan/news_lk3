@@ -1,8 +1,9 @@
 import os
 
-from utils import timex
 
 from news_lk3.core import AbstractNewsPaper
+
+from utils import TimeFormat
 
 TIME_RAW_FORMAT = '%Y-%m-%dT%H:%M:%S+05:30'
 
@@ -36,10 +37,8 @@ class DivainaLk(AbstractNewsPaper):
         time_ = soup.find(
             'time', {'class': 'entry-date updated td-module-date'}
         )
-        return timex.parse_time(
-            time_.get('datetime').strip(),
-            TIME_RAW_FORMAT,
-            timex.TIMEZONE_OFFSET_LK,
+        return TimeFormat(TIME_RAW_FORMAT).parse(
+            time_.get('datetime').strip()
         )
 
     @classmethod

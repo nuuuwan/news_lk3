@@ -1,6 +1,6 @@
 import os
 
-from utils import Git, hashx
+from utils import Git, hashx, get_date_id
 
 from news_lk3._utils import log
 
@@ -47,7 +47,9 @@ def git_checkout(force=True):
     log.debug(f'[git_checkout] {force=}')
     git = Git(GIT_REPO_URL)
     git.clone(DIR_REPO, force=force)
-    git.checkout('data')
+    date_id = get_date_id()
+    git_branch = f'data-{date_id}'
+    git.checkout(git_branch)
     log.debug(f'Cloned {GIT_REPO_URL} [data] to {DIR_REPO}')
 
 

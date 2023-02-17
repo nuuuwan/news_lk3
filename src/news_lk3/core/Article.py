@@ -1,4 +1,4 @@
-from utils import JSONFile, timex
+from utils import JSONFile, TIME_FORMAT_TIME_ID, TIME_FORMAT_TIME
 
 from news_lk3._constants import WORDS_PER_MINUTE
 from news_lk3._utils import log
@@ -73,7 +73,7 @@ class Article:
 
     @property
     def date_id(self):
-        return timex.get_date_id(self.time_ut, timex.TIMEZONE_OFFSET_LK)
+        return TIME_FORMAT_TIME_ID.stringify(self.time_ut)
 
     def __lt__(self, other):
         return self.time_ut < other.time_ut
@@ -83,7 +83,7 @@ class Article:
             [
                 self.newspaper_id,
                 self.url,
-                timex.format_time(self.time_ut),
+                TIME_FORMAT_TIME.stringify(self.time_ut),
                 self.original_lang,
                 self.original_title,
                 '\n'.join(

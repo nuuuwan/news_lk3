@@ -1,8 +1,9 @@
 import os
 
-from utils import timex
 
 from news_lk3.core import AbstractNewsPaper
+
+from utils import TimeFormat
 
 TIME_RAW_FORMAT = '%A %B %d, %Y %I:%M %p'
 
@@ -26,11 +27,7 @@ class EconomyNextCom(AbstractNewsPaper):
     @classmethod
     def parse_time_ut(cls, soup):
         span_time = soup.find('div', {'class': 'story-page-pulish-datetime'})
-        return timex.parse_time(
-            span_time.text.strip(),
-            TIME_RAW_FORMAT,
-            timex.TIMEZONE_OFFSET_LK,
-        )
+        return TimeFormat(TIME_RAW_FORMAT).parse(span_time.text.strip())
 
     @classmethod
     def parse_title(cls, soup):

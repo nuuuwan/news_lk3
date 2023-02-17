@@ -1,7 +1,6 @@
 import os
 import re
 
-from utils import timex
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -36,11 +35,7 @@ class AdaDeranaSinhalaLk(AbstractNewsPaper):
         span_time = soup.find('p', {'class': 'news-datestamp'})
         s = span_time.text.strip()
         s = re.sub(r'\s+', ' ', s)
-        return timex.parse_time(
-            s,
-            TIME_RAW_FORMAT,
-            timex.TIMEZONE_OFFSET_LK,
-        )
+        return TimeFormat(TIME_RAW_FORMAT).parse(s)
 
     @classmethod
     def parse_title(cls, soup):

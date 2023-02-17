@@ -1,7 +1,5 @@
 import os
-
-from utils import timex
-
+from utils import TimeFormat
 from news_lk3.core import AbstractNewsPaper
 
 TIME_RAW_FORMAT = '%Y-%m-%d %H:%M:%S'
@@ -31,11 +29,7 @@ class VirakesariLk(AbstractNewsPaper):
     def parse_time_ut(cls, soup):
         article = soup.find('article')
         p_meta = article.find('p', {'class', 'meta'})
-        return timex.parse_time(
-            p_meta.text[-19:],
-            TIME_RAW_FORMAT,
-            timex.TIMEZONE_OFFSET_LK,
-        )
+        return TimeFormat(TIME_RAW_FORMAT).parse(p_meta.text[-19:]).ut
 
     @classmethod
     def parse_title(cls, soup):

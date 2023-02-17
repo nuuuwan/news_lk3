@@ -1,6 +1,6 @@
 import os
 
-from utils import timex
+from utils import TimeFormat
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -33,9 +33,7 @@ class DailyNewsLk(AbstractNewsPaper):
     @classmethod
     def parse_time_ut(cls, soup):
         span_time = soup.find('span', {'class': 'date-display-single'})
-        return timex.parse_time(
-            span_time.text.strip(), TIME_RAW_FORMAT, timex.TIMEZONE_OFFSET_LK
-        )
+        return TimeFormat(TIME_RAW_FORMAT).parse(span_time.text.strip())
 
     @classmethod
     def parse_title(cls, soup):

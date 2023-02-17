@@ -1,6 +1,5 @@
 import os
-
-from utils import timex
+from utils import TimeFormat
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -32,11 +31,7 @@ class NewsFirstLk(AbstractNewsPaper):
         span_time = soup.find('p', {'class': 'artical-new-byline'})
         s = span_time.text.strip()
         lines = s.split('\n')
-        return timex.parse_time(
-            lines[2],
-            TIME_RAW_FORMAT,
-            timex.TIMEZONE_OFFSET_LK,
-        )
+        return TimeFormat(TIME_RAW_FORMAT).parse(lines[2])
 
     @classmethod
     def parse_title(cls, soup):

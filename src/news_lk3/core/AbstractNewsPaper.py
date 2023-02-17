@@ -2,7 +2,7 @@ import os
 from abc import ABC
 
 from bs4 import BeautifulSoup
-from utils import dt, mr, timex
+
 
 from news_lk3._utils import log
 from news_lk3.base.WWW import WWW
@@ -76,10 +76,8 @@ class AbstractNewsPaper(ABC):
     @classmethod
     def parse_time_ut(cls, soup):
         meta_time = soup.find('meta', {'itemprop': 'datePublished'})
-        return timex.parse_time(
-            meta_time.get('content').strip(),
-            TIME_RAW_FORMAT,
-            timex.TIMEZONE_OFFSET_LK,
+        return TimeFormat(TIME_RAW_FORMAT).parse(
+            meta_time.get('content').strip()
         )
 
     @classmethod

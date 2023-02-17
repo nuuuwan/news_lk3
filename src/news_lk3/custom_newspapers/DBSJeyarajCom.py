@@ -1,6 +1,5 @@
 import os
 
-from utils import timex
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -40,11 +39,7 @@ class DBSJeyarajCom(AbstractNewsPaper):
     def parse_time_ut(cls, soup):
         time_date = soup.find('time', {'class': 'entry-date'})
         s = time_date.text
-        return timex.parse_time(
-            s,
-            TIME_RAW_FORMAT,
-            timex.TIMEZONE_OFFSET_LK,
-        )
+        return TimeFormat(TIME_RAW_FORMAT).parse(s)
 
     @classmethod
     def parse_body_lines(cls, soup):

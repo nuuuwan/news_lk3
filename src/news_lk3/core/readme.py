@@ -1,6 +1,6 @@
 import os
 
-from utils import File, timex
+from utils import File, Time, TIME_FORMAT_TIME
 
 from news_lk3._constants import DELIM_MD, DIR_TMP_BASE, URL_GITHUB_BASE
 from news_lk3._utils import log
@@ -14,11 +14,11 @@ def group_by_time_and_newspaper(articles, current_time):
         newspaper_id = article.newspaper_id
         article_age = current_time - time_ut
         for [time_window, label] in [
-            [timex.SECONDS_IN.MINUTE * 30, 'Last 30 Minutes'],
-            [timex.SECONDS_IN.HOUR, 'Last Hour'],
-            [timex.SECONDS_IN.HOUR * 3, 'Last 3 Hours'],
-            [timex.SECONDS_IN.DAY, 'Last 24 Hours'],
-            [timex.SECONDS_IN.WEEK, 'Last Week'],
+            [SECONDS_IN.MINUTE * 30, 'Last 30 Minutes'],
+            [SECONDS_IN.HOUR, 'Last Hour'],
+            [SECONDS_IN.HOUR * 3, 'Last 3 Hours'],
+            [SECONDS_IN.DAY, 'Last 24 Hours'],
+            [SECONDS_IN.WEEK, 'Last Week'],
             [None, 'All Time'],
         ]:
             if time_window is None or article_age < time_window:
@@ -32,15 +32,14 @@ def group_by_time_and_newspaper(articles, current_time):
 
 
 def build_readme_summary(articles):
-    current_time = timex.get_unixtime()
+    current_time = Time().ut
     idx = group_by_time_and_newspaper(articles, current_time)
 
     log.info('Building README.md')
     lines = []
     lines.append('# Sri Lanka News App (Article Summary)')
-    time_last_run = timex.format_time(
-        current_time, timezone=timex.TIMEZONE_OFFSET_LK
-    )
+    time_last_run = TIME_FORMAT_TIME.stringify(current_time)
+
     lines.append(f'*As of {time_last_run} (LK time)*')
     lines.append('![wordcloud animation](wordcloud.gif)')
 
