@@ -1,6 +1,6 @@
 import os
 
-from utils import Git, get_date_id, hashx, Directory
+from utils import Directory, Git, get_date_id, hashx
 
 from news_lk3._utils import log
 
@@ -14,6 +14,7 @@ HASH_LENGTH = 8
 IGNORE_LIST = ['.git', '.gitignore', '.DS_Store']
 SHARD_NAME_LENGTH = 2
 ARTICLE_FILE_ONLY_LEN = HASH_LENGTH + 5
+
 
 def get_hash(url):
     return hashx.md5(url + SALT)[:HASH_LENGTH]
