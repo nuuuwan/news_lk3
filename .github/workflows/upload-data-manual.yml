@@ -8,7 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      
     - uses: actions/checkout@v2
+
+    - name: Get date_id
+      id: date_id
+      run: echo "::set-output name=date_id::$(date +%Y%m%d)"
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -34,7 +39,7 @@ jobs:
       with:
         repository: 'nuuuwan/news_lk3_data'
         token: "${{ secrets.REPO_TOKEN }}"
-        ref: "data-$(date +%Y%m%d)"
+        ref: "data-${{ steps.date_id.outputs.date_id }}"
 
     - name: Copy data, and push to repo branch data
       run: |
@@ -43,4 +48,4 @@ jobs:
         cp -r /tmp/news_lk3_data/* .
         git add .
         git commit -m "Updated data $(date +%Y%m%d)"
-        git push origin "data-$(date +%Y%m%d)"
+        git push origin data-${{ steps.date_id.outputs.date_id }}
