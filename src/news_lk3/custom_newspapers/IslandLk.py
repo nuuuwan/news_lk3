@@ -1,6 +1,5 @@
 import os
 
-from utils import timex
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -30,10 +29,8 @@ class IslandLk(AbstractNewsPaper):
     @classmethod
     def parse_time_ut(cls, soup):
         meta_time = soup.find('meta', {'itemprop': 'dateModified'})
-        return timex.parse_time(
-            meta_time.get('content').strip(),
-            TIME_RAW_FORMAT,
-            timex.TIMEZONE_OFFSET_LK,
+        return TimeFormat(TIME_RAW_FORMAT).parse(
+            meta_time.get('content').strip()
         )
 
     @classmethod
