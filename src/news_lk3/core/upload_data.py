@@ -23,7 +23,7 @@ def upload_data(is_test_mode=False):
         n_total += n_paper
 
         if is_test_mode:
-            if n_total > 5:
+            if n_total > 2:
                 break
 
         if n_total > MAX_ARTICLES_TO_UPLOAD:
