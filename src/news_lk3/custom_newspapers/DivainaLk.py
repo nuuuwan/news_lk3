@@ -36,8 +36,10 @@ class DivainaLk(AbstractNewsPaper):
         time_ = soup.find(
             'time', {'class': 'entry-date updated td-module-date'}
         )
-        return TimeFormat(TIME_RAW_FORMAT).parse(
-            time_.get('datetime').strip()
+        return (
+            TimeFormat(TIME_RAW_FORMAT)
+            .parse(time_.get('datetime').strip())
+            .ut
         )
 
     @classmethod

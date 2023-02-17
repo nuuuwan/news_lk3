@@ -1,5 +1,5 @@
 """Utils."""
 
-from utils import logx
+from utils import Log
 
-log = logx.get_logger('news_lk3')
+log = Log('news_lk3')

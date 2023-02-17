@@ -30,8 +30,10 @@ class IslandLk(AbstractNewsPaper):
     @classmethod
     def parse_time_ut(cls, soup):
         meta_time = soup.find('meta', {'itemprop': 'dateModified'})
-        return TimeFormat(TIME_RAW_FORMAT).parse(
-            meta_time.get('content').strip()
+        return (
+            TimeFormat(TIME_RAW_FORMAT)
+            .parse(meta_time.get('content').strip())
+            .ut
         )
 
     @classmethod

@@ -32,7 +32,7 @@ class NewsFirstLk(AbstractNewsPaper):
         span_time = soup.find('p', {'class': 'artical-new-byline'})
         s = span_time.text.strip()
         lines = s.split('\n')
-        return TimeFormat(TIME_RAW_FORMAT).parse(lines[2])
+        return TimeFormat(TIME_RAW_FORMAT).parse(lines[2]).ut
 
     @classmethod
     def parse_title(cls, soup):

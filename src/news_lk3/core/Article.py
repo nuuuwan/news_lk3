@@ -1,4 +1,4 @@
-from utils import TIME_FORMAT_TIME, TIME_FORMAT_TIME_ID, JSONFile
+from utils import TIME_FORMAT_TIME, TIME_FORMAT_TIME_ID, JSONFile, Time
 
 from news_lk3._constants import WORDS_PER_MINUTE
 from news_lk3._utils import log
@@ -18,14 +18,14 @@ class Article:
         time_ut,
         original_lang,
         original_title,
-        text_idx,
+        original_body_lines,
     ):
         self.newspaper_id = newspaper_id
         self.url = url
         self.time_ut = time_ut
         self.original_lang = original_lang
         self.original_title = original_title
-        self.text_idx = text_idx
+        self.original_body_lines = original_body_lines
 
     @staticmethod
     def load_d_from_file(article_file):
@@ -49,7 +49,7 @@ class Article:
             time_ut=d['time_ut'],
             original_lang=d.get('original_lang'),
             original_title=d.get('original_title'),
-            text_idx=d.get('text_idx'),
+            original_body_lines=d.get('original_body_lines'),
         )
 
     @property
@@ -60,7 +60,7 @@ class Article:
             time_ut=self.time_ut,
             original_lang=self.original_lang,
             original_title=self.original_title,
-            text_idx=self.text_idx,
+            original_body_lines=self.original_body_lines,
         )
 
     def store(self):
@@ -73,7 +73,7 @@ class Article:
 
     @property
     def date_id(self):
-        return TIME_FORMAT_TIME_ID.stringify(self.time_ut)
+        return TIME_FORMAT_TIME_ID.stringify(Time(self.time_ut))
 
     def __lt__(self, other):
         return self.time_ut < other.time_ut
@@ -87,7 +87,9 @@ class Article:
                 self.original_lang,
                 self.original_title,
                 '\n'.join(
-                    self.text_idx[self.original_lang]['body_lines'],
+                    self.original_body_lines[self.original_lang][
+                        'body_lines'
+                    ],
                 ),
             ]
         )

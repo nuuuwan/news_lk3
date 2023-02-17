@@ -30,8 +30,10 @@ class ColomboTelegraphCom(AbstractNewsPaper):
         meta_published_time = soup.find(
             'meta', {'property': 'article:published_time'}
         )
-        return TimeFormat(TIME_RAW_FORMAT).parse(
-            meta_published_time.get('content')
+        return (
+            TimeFormat(TIME_RAW_FORMAT)
+            .parse(meta_published_time.get('content'))
+            .ut
         )
 
     @classmethod

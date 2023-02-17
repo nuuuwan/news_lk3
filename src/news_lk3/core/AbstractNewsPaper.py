@@ -6,7 +6,6 @@ from utils import String, TimeFormat, mr
 
 from news_lk3._utils import log
 from news_lk3.base.WWW import WWW
-from news_lk3.core import Translate
 from news_lk3.core.Article import Article
 from news_lk3.core.filesys import get_article_file
 
@@ -78,7 +77,7 @@ class AbstractNewsPaper(ABC):
         meta_time = soup.find('meta', {'itemprop': 'datePublished'})
         return TimeFormat(TIME_RAW_FORMAT).parse(
             meta_time.get('content').strip()
-        )
+        ).ut
 
     @classmethod
     def parse_title(cls, soup):
@@ -127,14 +126,7 @@ class AbstractNewsPaper(ABC):
                 ),
             )
         )
-        original_author = cls.parse_author(soup).strip()
-
-        text_idx = Translate.build_text_idx(
-            original_lang,
-            original_title,
-            original_body_lines,
-            original_author,
-        )
+        cls.parse_author(soup).strip()
 
         article = Article(
             newspaper_id=cls.get_newspaper_id(),
@@ -142,7 +134,7 @@ class AbstractNewsPaper(ABC):
             time_ut=cls.parse_time_ut(soup),
             original_lang=original_lang,
             original_title=original_title,
-            text_idx=text_idx,
+            original_body_lines=original_body_lines,
         )
         return article
 

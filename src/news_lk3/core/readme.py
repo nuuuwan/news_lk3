@@ -38,10 +38,9 @@ def build_readme_summary(articles):
     log.info('Building README.md')
     lines = []
     lines.append('# Sri Lanka News App (Article Summary)')
-    time_last_run = TIME_FORMAT_TIME.stringify(current_time)
+    time_last_run = TIME_FORMAT_TIME.stringify(Time(current_time))
 
     lines.append(f'*As of {time_last_run} (LK time)*')
-    lines.append('![wordcloud animation](wordcloud.gif)')
 
     for label, idx_for_label in idx.items():
         total_n_articles = sum(

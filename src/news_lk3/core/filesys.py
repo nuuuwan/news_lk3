@@ -41,17 +41,17 @@ def get_article_file(url, dir_prefix=''):
     return os.path.join(dir_article_shard, file_name_only)
 
 
-def git_checkout(date_id, force=True):
+def git_checkout(force=True):
     log.debug(f'[git_checkout] {force=}')
     git = Git(GIT_REPO_URL)
     git.clone(DIR_REPO, force=force)
     date_id = get_date_id()
     git_branch = f'data-{date_id}'
     git.checkout(git_branch)
-    log.debug(f'Cloned {GIT_REPO_URL} [data] to {DIR_REPO}')
+    log.debug(f'Cloned {GIT_REPO_URL} [{git_branch}] to {DIR_REPO}')
 
 
-def get_article_files(date_id):
+def get_article_files():
     article_files = []
     for dir_article_shard_only in os.listdir(DIR_ARTICLES):
         dir_article_shard = os.path.join(DIR_ARTICLES, dir_article_shard_only)

@@ -26,7 +26,7 @@ class EconomyNextCom(AbstractNewsPaper):
     @classmethod
     def parse_time_ut(cls, soup):
         span_time = soup.find('div', {'class': 'story-page-pulish-datetime'})
-        return TimeFormat(TIME_RAW_FORMAT).parse(span_time.text.strip())
+        return TimeFormat(TIME_RAW_FORMAT).parse(span_time.text.strip()).ut
 
     @classmethod
     def parse_title(cls, soup):

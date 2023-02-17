@@ -33,7 +33,7 @@ class DailyNewsLk(AbstractNewsPaper):
     @classmethod
     def parse_time_ut(cls, soup):
         span_time = soup.find('span', {'class': 'date-display-single'})
-        return TimeFormat(TIME_RAW_FORMAT).parse(span_time.text.strip())
+        return TimeFormat(TIME_RAW_FORMAT).parse(span_time.text.strip()).ut
 
     @classmethod
     def parse_title(cls, soup):

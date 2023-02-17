@@ -32,7 +32,7 @@ class AdaDeranaLk(AbstractNewsPaper):
         span_time = soup.find('p', {'class': 'news-datestamp'})
         s = span_time.text.strip()
         s = re.sub(r'\s+', ' ', s)
-        return TimeFormat(TIME_RAW_FORMAT).parse(s)
+        return TimeFormat(TIME_RAW_FORMAT).parse(s).ut
 
     @classmethod
     def parse_title(cls, soup):
