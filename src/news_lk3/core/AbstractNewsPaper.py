@@ -1,6 +1,6 @@
 import os
 from abc import ABC
-
+from utils import String, TimeFormat, mr
 from bs4 import BeautifulSoup
 
 
@@ -63,7 +63,7 @@ class AbstractNewsPaper(ABC):
 
     @classmethod
     def get_newspaper_id(cls):
-        return dt.to_kebab(dt.camel_to_snake(cls.__name__))
+        return String(String(cls.__name__).snake).kebab
 
     @classmethod
     def get_index_urls(cls):

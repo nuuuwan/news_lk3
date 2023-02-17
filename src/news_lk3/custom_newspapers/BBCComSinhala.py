@@ -1,5 +1,5 @@
 import os
-
+from utils import TimeFormat
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -30,8 +30,10 @@ class BBCComSinhala(AbstractNewsPaper):
         meta_published_time = soup.find(
             'meta', {'name': 'article:published_time'}
         )
-        return TimeFormat(TIME_RAW_FORMAT).parse(
-            meta_published_time.get('content')
+        return (
+            TimeFormat(TIME_RAW_FORMAT)
+            .parse(meta_published_time.get('content'))
+            .ut
         )
 
     @classmethod

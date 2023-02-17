@@ -1,7 +1,7 @@
 import os
 import re
 
-
+from utils import TimeFormat
 from news_lk3.core import AbstractNewsPaper
 
 TIME_RAW_FORMAT = '%B %d, %Y %I:%M %p'
@@ -35,7 +35,7 @@ class AdaDeranaSinhalaLk(AbstractNewsPaper):
         span_time = soup.find('p', {'class': 'news-datestamp'})
         s = span_time.text.strip()
         s = re.sub(r'\s+', ' ', s)
-        return TimeFormat(TIME_RAW_FORMAT).parse(s)
+        return TimeFormat(TIME_RAW_FORMAT).parse(s).ut
 
     @classmethod
     def parse_title(cls, soup):

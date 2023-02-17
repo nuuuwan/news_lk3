@@ -1,6 +1,6 @@
 import os
 
-from utils import File, Time, TIME_FORMAT_TIME
+from utils import File, Time, TIME_FORMAT_TIME, SECONDS_IN
 
 from news_lk3._constants import DELIM_MD, DIR_TMP_BASE, URL_GITHUB_BASE
 from news_lk3._utils import log

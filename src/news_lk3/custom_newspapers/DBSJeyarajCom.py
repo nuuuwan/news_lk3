@@ -1,5 +1,5 @@
 import os
-
+from utils import TimeFormat
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -39,7 +39,7 @@ class DBSJeyarajCom(AbstractNewsPaper):
     def parse_time_ut(cls, soup):
         time_date = soup.find('time', {'class': 'entry-date'})
         s = time_date.text
-        return TimeFormat(TIME_RAW_FORMAT).parse(s)
+        return TimeFormat(TIME_RAW_FORMAT).parse(s).ut
 
     @classmethod
     def parse_body_lines(cls, soup):
