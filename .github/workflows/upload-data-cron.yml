@@ -1,9 +1,8 @@
-name: Upload Data - Cron
+name: Upload Data - Cron (Every Hour, on the 5th minute)
 
-# on:
-#  schedule:
-#    - cron:  "5 * * * *"
-on: workflow_dispatch
+on:
+ schedule:
+   - cron:  "5 * * * *"
 
 jobs:
   upload-data:
@@ -11,7 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      
     - uses: actions/checkout@v2
+
+    - name: Get date_id
+      id: date_id
+      run: echo "::set-output name=date_id::$(date +%Y%m%d)"
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -23,7 +27,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install -r requirements.txt
-        python -m spacy download en_core_web_sm
 
     - name: Test
       uses: nuuuwan/python-repo-test@v1
@@ -38,13 +41,14 @@ jobs:
       with:
         repository: 'nuuuwan/news_lk3_data'
         token: "${{ secrets.REPO_TOKEN }}"
-        ref: 'data'        
+        ref: "main"
 
     - name: Copy data, and push to repo branch data
       run: |
         git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
         git config --global user.name "${{ secrets.GIT_USER_NAME }}"
+        git checkout -B data-${{ steps.date_id.outputs.date_id }}
         cp -r /tmp/news_lk3_data/* .
         git add .
-        git commit -m "Updated data $(date)"
-        git push origin data
+        git commit -m "Updated data $(date +%Y%m%d)"
+        git push origin data-${{ steps.date_id.outputs.date_id }}
