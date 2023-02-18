@@ -1,8 +1,9 @@
 name: Upload Data - Cron (Every Hour, on the 5th minute)
 
-on:
- schedule:
-   - cron:  "5 * * * *"
+# on:
+#  schedule:
+#    - cron:  "5 * * * *"
+on: workflow_dispatch
 
 jobs:
   upload-data:
