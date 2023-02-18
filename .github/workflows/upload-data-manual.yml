@@ -48,9 +48,12 @@ jobs:
         
         git checkout -B data-${{ steps.date_id.outputs.date_id }}
         git push origin data-${{ steps.date_id.outputs.date_id }}
-        
+      
         git pull origin data-${{ steps.date_id.outputs.date_id }}
         cp -r /tmp/news_lk3_data/* .
         git add .
         git commit -m "Updated data $(date +%Y%m%d)"
+        
+        
+        git pull origin data-${{ steps.date_id.outputs.date_id }}
         git push origin data-${{ steps.date_id.outputs.date_id }}
