@@ -47,6 +47,7 @@ jobs:
         git config --global user.name "${{ secrets.GIT_USER_NAME }}"
         
         git checkout -B data-${{ steps.date_id.outputs.date_id }}
+        git push origin data-${{ steps.date_id.outputs.date_id }}
         
         git pull origin data-${{ steps.date_id.outputs.date_id }}
         cp -r /tmp/news_lk3_data/* .
