@@ -1,9 +1,9 @@
 name: Upload Data - Cron (Every Hour, on the 35th minute)
 
-on:
- schedule:
-   - cron:  "35 * * * *"
-# on: workflow_dispatch
+# on:
+#  schedule:
+#    - cron:  "35 * * * *"
+on: workflow_dispatch
 
 jobs:
   upload-data:
