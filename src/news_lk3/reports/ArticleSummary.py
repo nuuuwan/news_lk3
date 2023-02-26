@@ -41,6 +41,7 @@ class ArticleSummary:
                     original_title=article.original_title,
                     n_original_body_lines=len(article.original_body_lines),
                     # less useful
+                    hash=Article.get_hash(article.url),
                     time_ut=article.time_ut,
                     original_lang=article.original_lang,
                     url=article.url,
