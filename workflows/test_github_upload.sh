@@ -1,6 +1,11 @@
 #!/bin/bash
 
-es
+GIT_REPO=https://github.com/nuuuwan/news_lk3_data.git
+TEST_DATA_DIR=/tmp/news_lk3_data-test
+
+rm -rf $TEST_DATA_DIR
+mkdir $TEST_DATA_DIR
+git clone $GIT_REPO $TEST_DATA_DIR
 
 cd $TEST_DATA_DIR
 git checkout data
