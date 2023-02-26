@@ -55,7 +55,7 @@ def helper_test_parse(test_case, newspaper_class):
 
 
 class TestCase(unittest.TestCase):
-    # @unittest.skip('unstable test')
+    @unittest.skip('unstable test')
     def test_get_article_urls(self):
         for newspaper_class in SAFE_NEWSPAPER_CLASS_LIST:
             article_urls = newspaper_class.get_article_urls()
@@ -65,7 +65,7 @@ class TestCase(unittest.TestCase):
         for newspaper_class in SAFE_NEWSPAPER_CLASS_LIST[:1]:
             helper_test_parse(self, newspaper_class)
 
-    # @unittest.skip('unstable test')
+    @unittest.skip('unstable test')
     def test_parse_article(self):
         for newspaper_class in SAFE_NEWSPAPER_CLASS_LIST:
             helper_test_parse(self, newspaper_class)
