@@ -10,7 +10,7 @@ DIR_ROOT = '/tmp'
 DIR_REPO = os.path.join(DIR_ROOT, REPO_DATA_NAME)
 GIT_BRANCH_DATA = 'data'
 
-SALT = '5568445278803347'
+HASH_SALT = '123019839120398'
 HASH_LENGTH = 8
 IGNORE_LIST = ['.git', '.gitignore', '.DS_Store']
 SHARD_NAME_LENGTH = 2
@@ -18,7 +18,7 @@ ARTICLE_FILE_ONLY_LEN = HASH_LENGTH + 5
 
 
 def get_hash(url):
-    return hashx.md5(url + SALT)[:HASH_LENGTH]
+    return hashx.md5(url + HASH_SALT)[:HASH_LENGTH]
 
 
 def get_article_file_only(url):
