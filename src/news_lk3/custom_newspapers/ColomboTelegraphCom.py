@@ -62,8 +62,3 @@ class ColomboTelegraphCom(AbstractNewsPaper):
             "https://www.colombotelegraph.com",
             "index.php/preventing-crooks-from-entering-the-parliament/",
         )
-
-
-if __name__ == '__main__':
-    for article in ColomboTelegraphCom.scrape():
-        print(article)

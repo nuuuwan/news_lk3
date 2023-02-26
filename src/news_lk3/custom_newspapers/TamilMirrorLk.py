@@ -45,6 +45,3 @@ class TamilMirrorLk(AbstractNewsPaper):
         )
 
 
-if __name__ == '__main__':
-    for article in TamilMirrorLk.scrape():
-        print(article)

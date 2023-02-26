@@ -62,6 +62,3 @@ class CeylonTodayLk(AbstractNewsPaper):
             "2022/06/24/welgama-released-from-bribery-case/",
         )
 
-
-if __name__ == '__main__':
-    print(CeylonTodayLk.parse_article(CeylonTodayLk.get_test_article_url()))

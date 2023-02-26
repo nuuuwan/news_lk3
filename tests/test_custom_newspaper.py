@@ -20,7 +20,6 @@ def helper_test_parse(test_case, newspaper_class):
 
     time_start = time.time()
     article = newspaper_class.parse_article(article_url)
-    print(article)
 
     delta_time = time.time() - time_start
 

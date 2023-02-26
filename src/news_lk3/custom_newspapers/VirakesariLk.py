@@ -67,8 +67,3 @@ class VirakesariLk(AbstractNewsPaper):
         return os.path.join(
             "https://www.virakesari.lk/article/130122",
         )
-
-
-if __name__ == '__main__':
-    for article in VirakesariLk.scrape():
-        print(article)

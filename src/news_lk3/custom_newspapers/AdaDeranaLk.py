@@ -58,6 +58,3 @@ class AdaDeranaLk(AbstractNewsPaper):
         )
 
 
-if __name__ == '__main__':
-    for article in AdaDeranaLk.scrape():
-        print(article.title)

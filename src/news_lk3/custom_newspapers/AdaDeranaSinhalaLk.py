@@ -34,8 +34,7 @@ class AdaDeranaSinhalaLk(AbstractNewsPaper):
     @classmethod
     def parse_time_ut(cls, soup):
         p_time = soup.find('p', {'class': 'news-datestamp'})
-        print('span_time.text', p_time.text)
-
+        
         s = p_time.text.strip()
         s = re.sub(r'\s+', ' ', s)
         return TimeFormat(TIME_RAW_FORMAT).parse(s).ut
@@ -61,11 +60,3 @@ class AdaDeranaSinhalaLk(AbstractNewsPaper):
         return os.path.join(
             "https://sinhala.adaderana.lk/news/178879",
         )
-
-
-if __name__ == '__main__':
-    print(
-        AdaDeranaSinhalaLk.parse_article(
-            AdaDeranaSinhalaLk.get_test_article_url()
-        )
-    )
