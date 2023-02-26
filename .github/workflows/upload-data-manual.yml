@@ -25,7 +25,7 @@ jobs:
     - name: Test
       uses: nuuuwan/python-repo-test@v1
 
-    - name: Run - Upload Data
+    - name: Run - Upload
       run: |
         export PYTHONPATH="$PYTHONPATH:./src"
         python workflows/upload_data.py
@@ -44,6 +44,6 @@ jobs:
         
         cp -r /tmp/news_lk3_data/* .
         git add .
-        git commit -m "Updated data"
+        git commit -m "Uploaded data"
 
         git push origin main

@@ -1,9 +1,9 @@
-name: Upload Data - Cron (Every Hour, on the 35th minute)
+name: Upload Reports - Cron (Every Hour, on the 55th minute)
 
-on:
- schedule:
-   - cron:  "35 * * * *"
-# on: workflow_dispatch
+# on:
+#  schedule:
+#    - cron:  "55 * * * *"
+on: workflow_dispatch
 
 jobs:
   upload-data:
@@ -31,7 +31,7 @@ jobs:
     - name: Run - Upload
       run: |
         export PYTHONPATH="$PYTHONPATH:./src"
-        python workflows/upload_data.py
+        python workflows/upload_reports.py
 
     - name: Checkout repo branch data
       uses: actions/checkout@v3
@@ -47,6 +47,6 @@ jobs:
         
         cp -r /tmp/news_lk3_data/* .
         git add .
-        git commit -m "Uploaded data"
+        git commit -m "Uploaded reports"
 
         git push origin main
