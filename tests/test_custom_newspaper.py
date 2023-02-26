@@ -15,7 +15,7 @@ log = Log('test_custom_newspaper')
 
 
 def helper_test_parse(test_case, newspaper_class):
-    log.debug(f'[helper_test_parse] {newspaper_class}')
+    log.debug(f'[helper_test_parse] {newspaper_class.get_newspaper_id()}')
     article_url = newspaper_class.get_test_article_url()
 
     time_start = time.time()
@@ -55,7 +55,7 @@ def helper_test_parse(test_case, newspaper_class):
 
 
 class TestCase(unittest.TestCase):
-    @unittest.skip('unstable test')
+    # @unittest.skip('unstable test')
     def testParseSafe(self):
         for newspaper_class in SAFE_NEWSPAPER_CLASS_LIST:
             helper_test_parse(self, newspaper_class)

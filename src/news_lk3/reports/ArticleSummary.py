@@ -44,7 +44,6 @@ class ArticleSummary:
                     time_ut=article.time_ut,
                     original_lang=article.original_lang,
                     url=article.url,
-                    
                 )
             )
         d_list = sorted(d_list, key=lambda d: d['time_ut'], reverse=True)
@@ -55,13 +54,10 @@ class ArticleSummary:
         return os.path.join(DIR_REPO_REPORTS, 'summary.tsv')
 
     def store_summary(self):
-        summary= self.summary
+        summary = self.summary
         if not Directory(DIR_REPO_REPORTS).exists:
             os.makedirs(DIR_REPO_REPORTS)
             log.debug(f'Created directory {DIR_REPO_REPORTS}')
-        
+
         TSVFile(self.summary_file_path).write(summary)
         log.debug(f'Stored summary to {self.summary_file_path}')
-
-
-

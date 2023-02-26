@@ -4,6 +4,7 @@ import ssl
 import requests
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from utils import FiledVariable
 
 USER_AGENT = ' '.join(
     [
@@ -34,16 +35,22 @@ class WWW:
             return None
 
     def read(self):
-        binary = self.readBinary()
-        if not binary:
-            return None
-        return binary.decode()
+        def nocache():
+            binary = self.readBinary()
+            if not binary:
+                return None
+            return binary.decode()
+
+        return FiledVariable(self.url, nocache).value
 
     def readSelenium(self):
-        options = Options()
-        options.headless = True
-        driver = webdriver.Firefox(options=options)
-        driver.get(self.url)
-        content = driver.page_source
-        driver.quit()
-        return content
+        def nocache():
+            options = Options()
+            options.headless = True
+            driver = webdriver.Firefox(options=options)
+            driver.get(self.url)
+            content = driver.page_source
+            driver.quit()
+            return content
+
+        return FiledVariable(self.url + '.selenium', nocache).value
