@@ -1,12 +1,12 @@
-name: Upload Reports - Cron (Every Hour, on the 55th minute)
+name: Upload Reports - Cron
 
-# on:
-#  schedule:
-#    - cron:  "55 * * * *"
-on: workflow_dispatch
+on:
+ schedule:
+   - cron:  "55 * * * *"
+# on: workflow_dispatch
 
 jobs:
-  upload-data:
+  upload-reports:
 
     runs-on: ubuntu-latest
 
