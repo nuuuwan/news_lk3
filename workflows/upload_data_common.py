@@ -14,7 +14,7 @@ def init():
     os.system(f'mkdir {DIR_REPO}')
 
 
-def upload_data(is_test_mode=False):
+def main(is_test_mode=False):
     init()
 
     random.shuffle(newspaper_class_list)

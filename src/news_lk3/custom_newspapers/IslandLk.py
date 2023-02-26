@@ -62,7 +62,3 @@ class IslandLk(AbstractNewsPaper):
             "https://island.lk",
             "flight-su-289-and-the-future-of-sri-lanka-russia-ties/",
         )
-
-
-if __name__ == '__main__':
-    IslandLk.scrape()

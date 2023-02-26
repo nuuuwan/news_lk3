@@ -57,7 +57,3 @@ class BBCComSinhala(AbstractNewsPaper):
         return os.path.join(
             "https://www.bbc.com/sinhala/sri-lanka-61923325",
         )
-
-
-if __name__ == '__main__':
-    BBCComSinhala.scrape()
