@@ -8,12 +8,11 @@ mkdir $TEST_DATA_DIR
 git clone $GIT_REPO $TEST_DATA_DIR
 
 cd $TEST_DATA_DIR
-git checkout data
 
 cp -r /tmp/news_lk3_data/* $TEST_DATA_DIR/
 
 git add .
 git commit -m "Updated data"
 
-git push origin data
+git push origin main
 
