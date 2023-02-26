@@ -43,5 +43,3 @@ class TamilMirrorLk(AbstractNewsPaper):
             "https://www.tamilmirror.lk",
             "%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%95%E0%AE%B3%E0%AF%8D/%E0%AE%AE%E0%AE%A9%E0%AF%8D%E0%AE%A9%E0%AE%BF%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81-%E0%AE%95%E0%AF%8B%E0%AE%B0%E0%AE%BF%E0%AE%A9%E0%AE%BE%E0%AE%B0%E0%AF%8D-%E0%AE%95%E0%AE%9E%E0%AF%8D%E0%AE%9A%E0%AE%A9/175-299164",  # noqa: E501
         )
-
-

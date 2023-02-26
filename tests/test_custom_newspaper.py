@@ -60,6 +60,10 @@ class TestCase(unittest.TestCase):
         for newspaper_class in SAFE_NEWSPAPER_CLASS_LIST:
             helper_test_parse(self, newspaper_class)
 
+    def testParseSafeSingle(self):
+        for newspaper_class in SAFE_NEWSPAPER_CLASS_LIST[:1]:
+            helper_test_parse(self, newspaper_class)
+
 
 if __name__ == '__main__':
     unittest.main()

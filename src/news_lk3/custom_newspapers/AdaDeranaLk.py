@@ -56,5 +56,3 @@ class AdaDeranaLk(AbstractNewsPaper):
             "http://www.adaderana.lk",
             "news/83246/10-hour-water-cut-in-suburbs-of-colombo",
         )
-
-

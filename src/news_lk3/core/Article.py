@@ -1,7 +1,12 @@
-from utils import TIME_FORMAT_TIME, TIME_FORMAT_TIME_ID, JSONFile, Time
+import os
+
+from utils import TIME_FORMAT_TIME, TIME_FORMAT_TIME_ID, JSONFile, Time, hashx
 
 from news_lk3._utils import log
-from news_lk3.core.filesys import get_article_file, get_article_file_paths
+
+DIR_REPO = '/tmp/news_lk3_data'
+HASH_SALT = '123019839120398'
+HASH_LENGTH = 8
 
 
 class Article:
@@ -22,6 +27,20 @@ class Article:
         self.original_lang = original_lang
         self.original_title = original_title
         self.original_body_lines = original_body_lines
+
+    @staticmethod
+    def get_hash(url):
+        return hashx.md5(url + HASH_SALT)[:HASH_LENGTH]
+
+    @staticmethod
+    def get_article_file_only(url):
+        h = Article.get_hash(url)
+        return f'{h}.json'
+
+    @staticmethod
+    def get_article_file(url, dir_prefix=''):
+        file_name_only = Article.get_article_file_only(url)
+        return os.path.join(DIR_REPO, file_name_only)
 
     @staticmethod
     def load_d_from_file(article_file):
@@ -65,7 +84,7 @@ class Article:
 
     @property
     def file_name(self):
-        return get_article_file(self.url)
+        return Article.get_article_file(self.url)
 
     @property
     def date_id(self):
@@ -87,23 +106,3 @@ class Article:
                 ),
             ]
         )
-
-    @staticmethod
-    def load_articles():
-        articles = list(
-            map(
-                Article.load_from_file,
-                get_article_file_paths(),
-            )
-        )
-        deduped_articles = list(
-            dict(
-                list(
-                    map(
-                        lambda article: [article.original_title, article],
-                        articles,
-                    )
-                )
-            ).values()
-        )
-        return list(reversed(sorted(deduped_articles)))

@@ -7,7 +7,6 @@ from utils import String, TimeFormat, mr
 from news_lk3._utils import log
 from news_lk3.base.WWW import WWW
 from news_lk3.core.Article import Article
-from news_lk3.core.filesys import get_article_file
 
 MIN_ARTICLE_HTML_SIZE = 1_000
 MIN_CHARS_IN_BODY_LINE = 60
@@ -131,7 +130,7 @@ class AbstractNewsPaper(ABC):
         cls.parse_author(soup).strip()
 
         time_ut = cls.parse_time_ut(soup)
-        
+
         article = Article(
             newspaper_id=cls.get_newspaper_id(),
             url=article_url,
@@ -145,7 +144,7 @@ class AbstractNewsPaper(ABC):
     @classmethod
     def parse_and_store_article(cls, article_url):
         log.debug(f'[parse_and_store_article] {article_url}...')
-        article_file = get_article_file(article_url)
+        article_file = Article.get_article_file(article_url)
         if os.path.exists(article_file):
             log.info(f'{article_file} already exists. Not parsing.')
             return None

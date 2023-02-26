@@ -34,7 +34,7 @@ class AdaDeranaSinhalaLk(AbstractNewsPaper):
     @classmethod
     def parse_time_ut(cls, soup):
         p_time = soup.find('p', {'class': 'news-datestamp'})
-        
+
         s = p_time.text.strip()
         s = re.sub(r'\s+', ' ', s)
         return TimeFormat(TIME_RAW_FORMAT).parse(s).ut

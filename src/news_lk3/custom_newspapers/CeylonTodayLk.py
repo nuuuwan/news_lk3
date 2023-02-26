@@ -61,4 +61,3 @@ class CeylonTodayLk(AbstractNewsPaper):
             "https://ceylontoday.lk",
             "2022/06/24/welgama-released-from-bribery-case/",
         )
-
