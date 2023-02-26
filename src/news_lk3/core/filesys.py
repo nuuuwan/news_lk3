@@ -8,7 +8,7 @@ REPO_DATA_NAME = 'news_lk3_data'
 GIT_REPO_URL = f'https://github.com/nuuuwan/{REPO_DATA_NAME}.git'
 DIR_ROOT = '/tmp'
 DIR_REPO = os.path.join(DIR_ROOT, REPO_DATA_NAME)
-GIT_BRANCH_DATA = 'data'
+GIT_BRANCH_DATA = 'main'
 
 HASH_SALT = '123019839120398'
 HASH_LENGTH = 8
