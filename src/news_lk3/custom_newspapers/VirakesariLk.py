@@ -22,8 +22,8 @@ class VirakesariLk(AbstractNewsPaper):
     @classmethod
     def parse_article_urls(cls, soup):
         article_urls = []
-        for div in soup.find_all('div', {'class': 'media-body'}):
-            article_url = div.find('a').get('href')
+        for a in soup.find_all('a', {'class': 'news-item'}):
+            article_url = a.get('href')
             article_urls.append(article_url)
         return article_urls
 

@@ -21,7 +21,7 @@ class BBCComSinhala(AbstractNewsPaper):
     @classmethod
     def parse_article_urls(cls, soup):
         article_urls = []
-        for a in soup.find_all('a', {'class': 'emimjbx0'}):
+        for a in soup.find_all('a', {'class': 'focusIndicatorDisplayBlock'}):
             article_url = a.get('href')
             article_urls.append(article_url)
         return article_urls
