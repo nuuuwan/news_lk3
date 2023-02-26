@@ -52,11 +52,6 @@ class Article:
         return Article.from_dict(d)
 
     @staticmethod
-    def load_from_file_with_backpopulate(article_file):
-        d = Article.load_d_from_file(article_file)
-        return Article.from_dict_with_backpopulate(d)
-
-    @staticmethod
     def from_dict(d):
         return Article(
             newspaper_id=d['newspaper_id'],

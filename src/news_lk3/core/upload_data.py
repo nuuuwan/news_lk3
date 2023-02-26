@@ -1,16 +1,18 @@
-import random
 import os
+import random
 
 from news_lk3._utils import log
-from news_lk3.custom_newspapers import newspaper_class_list
 from news_lk3.core.Article import DIR_REPO
+from news_lk3.custom_newspapers import newspaper_class_list
 
 DELIM_MD = '\n' * 2
 MAX_ARTICLES_TO_UPLOAD = 80
 
+
 def init():
     os.system(f'rm -rf {DIR_REPO}')
     os.system(f'mkdir {DIR_REPO}')
+
 
 def upload_data(is_test_mode=False):
     init()
