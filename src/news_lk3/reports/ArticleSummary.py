@@ -18,10 +18,10 @@ class ArticleSummary:
         git.checkout('main')
 
         articles = []
-        for file in Directory(DIR_REPO).children:
-            if file.ext != 'json':
+        for child in Directory(DIR_REPO).children:
+            if isinstance(child, Directory) or child.ext != 'json':
                 continue
-            article = Article.load_from_file(file.path)
+            article = Article.load_from_file(child.path)
             articles.append(article)
         n_articles = len(articles)
         log.debug(f'Loaded {n_articles} articles')
