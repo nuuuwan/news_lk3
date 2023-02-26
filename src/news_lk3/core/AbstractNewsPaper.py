@@ -111,6 +111,7 @@ class AbstractNewsPaper(ABC):
 
     @classmethod
     def parse_article(cls, article_url):
+        print('parse_article', article_url, cls)
         soup = cls.get_soup(article_url)
         if not soup:
             raise Exception(f'{article_url} has invalid HTML. Not parsing.')
@@ -130,10 +131,13 @@ class AbstractNewsPaper(ABC):
         )
         cls.parse_author(soup).strip()
 
+        time_ut = cls.parse_time_ut(soup)
+        print('time_ut', time_ut)
+
         article = Article(
             newspaper_id=cls.get_newspaper_id(),
             url=article_url,
-            time_ut=cls.parse_time_ut(soup),
+            time_ut=time_ut,
             original_lang=original_lang,
             original_title=original_title,
             original_body_lines=original_body_lines,

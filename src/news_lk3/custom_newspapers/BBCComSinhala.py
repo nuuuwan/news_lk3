@@ -44,7 +44,7 @@ class BBCComSinhala(AbstractNewsPaper):
 
     @classmethod
     def parse_body_lines(cls, soup):
-        divs = soup.find_all('div', {'class': 'bbc-19j92fr essoxwk0'})
+        divs = soup.find_all('div', {'dir': 'ltr'})
         return list(
             map(
                 lambda div: div.text,

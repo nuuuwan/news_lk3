@@ -4,7 +4,7 @@ from utils import TimeFormat
 
 from news_lk3.core import AbstractNewsPaper
 
-TIME_RAW_FORMAT = '%Y-%m-%d %H:%M:%S'
+TIME_RAW_FORMAT = '%d %b, %Y | %I:%M %p'
 
 
 class VirakesariLk(AbstractNewsPaper):
@@ -29,30 +29,32 @@ class VirakesariLk(AbstractNewsPaper):
 
     @classmethod
     def parse_time_ut(cls, soup):
-        article = soup.find('article')
-        p_meta = article.find('p', {'class', 'meta'})
-        return TimeFormat(TIME_RAW_FORMAT).parse(p_meta.text[-19:]).ut
+        div = soup.find('div', {'class', 'auth-date'})
+        h5 = div.find('h5', {'class', 'news-date'})
+        time_str = h5.text.replace('\n', ' ').strip()
+        return TimeFormat(TIME_RAW_FORMAT).parse(time_str).ut
 
     @classmethod
     def parse_title(cls, soup):
-        article = soup.find('article')
-        h1 = article.find('h1')
-        return h1.text
+        title = soup.find('title')
+        return title.text.split('|')[0].strip()
 
     @classmethod
     def parse_author(cls, soup):
-        article = soup.find('article')
-        p_meta = article.find('p', {'class', 'meta'})
+        div = soup.find('div', {'class', 'auth-date'})
+        p = div.find('p')
         return (
-            p_meta.text[:-19]
-            .replace('Published', '')
-            .replace('by', '')
-            .replace('on', '')
+            p.text.lower()[:-19]
+            .replace('published', ' ')
+            .replace('by', ' ')
+            .replace('on', ' ')
+            .strip()
+            .title()
         )
 
     @classmethod
     def parse_body_lines(cls, soup):
-        div = soup.find('div', {'class': 'post-content'})
+        div = soup.find('div', {'class': 'article-content'})
         return list(
             map(
                 lambda line: line.strip(),

@@ -33,8 +33,10 @@ class AdaDeranaSinhalaLk(AbstractNewsPaper):
 
     @classmethod
     def parse_time_ut(cls, soup):
-        span_time = soup.find('p', {'class': 'news-datestamp'})
-        s = span_time.text.strip()
+        p_time = soup.find('p', {'class': 'news-datestamp'})
+        print('span_time.text', p_time.text)
+
+        s = p_time.text.strip()
         s = re.sub(r'\s+', ' ', s)
         return TimeFormat(TIME_RAW_FORMAT).parse(s).ut
 
@@ -57,9 +59,7 @@ class AdaDeranaSinhalaLk(AbstractNewsPaper):
     @classmethod
     def get_test_article_url(cls):
         return os.path.join(
-            "http://sinhala.adaderana.lk",
-            "news/169446",
-            "%E0%B6%9A%E0%B7%8F%E0%B6%B1%E0%B7%8A%E0%B6%AD%E0%B7%8F%E0%B7%80%E0%B6%B1%E0%B7%8A-%E0%B6%B6%E0%B7%92%E0%B6%BA%E0%B6%9C%E0%B6%B1%E0%B7%8A%E0%B7%80%E0%B7%8F-%E0%B6%9A%E0%B7%9C%E0%B6%BD%E0%B7%8A%E0%B6%BD%E0%B6%9A%E0%B7%91%E0%B6%B8%E0%B7%8A-%E0%B6%9A%E0%B7%85-%E0%B6%9A%E0%B6%BD%E0%B7%8A%E0%B6%BD%E0%B7%92%E0%B6%BA",  # noqa: E501
+            "https://sinhala.adaderana.lk/news/178879",
         )
 
 

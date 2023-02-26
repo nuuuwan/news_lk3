@@ -1,11 +1,7 @@
 from utils import TIME_FORMAT_TIME, TIME_FORMAT_TIME_ID, JSONFile, Time
 
-from news_lk3._constants import WORDS_PER_MINUTE
 from news_lk3._utils import log
 from news_lk3.core.filesys import get_article_file, get_article_file_paths
-
-MINUTES_PER_TRUNCATED_BODY = 1
-MAX_WORDS_TRUNCATED = WORDS_PER_MINUTE * MINUTES_PER_TRUNCATED_BODY
 
 
 class Article:
@@ -83,13 +79,11 @@ class Article:
             [
                 self.newspaper_id,
                 self.url,
-                TIME_FORMAT_TIME.stringify(self.time_ut),
+                TIME_FORMAT_TIME.stringify(Time(self.time_ut)),
                 self.original_lang,
                 self.original_title,
                 '\n'.join(
-                    self.original_body_lines[self.original_lang][
-                        'body_lines'
-                    ],
+                    self.original_body_lines,
                 ),
             ]
         )
