@@ -1,6 +1,6 @@
 import os
 
-from utils import Directory, Git, get_date_id, hashx
+from utils import Directory, Git, hashx
 
 from news_lk3._utils import log
 
@@ -8,6 +8,7 @@ REPO_DATA_NAME = 'news_lk3_data'
 GIT_REPO_URL = f'https://github.com/nuuuwan/{REPO_DATA_NAME}.git'
 DIR_ROOT = '/tmp'
 DIR_REPO = os.path.join(DIR_ROOT, REPO_DATA_NAME)
+GIT_BRANCH_DATA = 'data'
 
 SALT = '5568445278803347'
 HASH_LENGTH = 8
@@ -34,10 +35,8 @@ def git_checkout(force=True):
     log.debug(f'[git_checkout] {force=}')
     git = Git(GIT_REPO_URL)
     git.clone(DIR_REPO, force=force)
-    date_id = get_date_id()
-    git_branch = f'data-{date_id}'
-    git.checkout(git_branch)
-    log.debug(f'Cloned {GIT_REPO_URL} [{git_branch}] to {DIR_REPO}')
+    git.checkout(GIT_BRANCH_DATA)
+    log.debug(f'Cloned {GIT_REPO_URL} [{GIT_BRANCH_DATA}] to {DIR_REPO}')
 
 
 def get_article_file_paths():
