@@ -16,3 +16,4 @@ git commit -m "Updated data"
 
 git push origin main
 
+open -a "safari" "https://github.com/nuuuwan/news_lk3_data"
