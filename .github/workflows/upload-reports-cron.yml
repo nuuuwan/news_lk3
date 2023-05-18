@@ -2,7 +2,7 @@ name: Upload Reports - Cron
 
 on:
  schedule:
-   - cron:  "55 * * * *"
+   - cron:  "56 * * * *"
 # on: workflow_dispatch
 
 jobs:
