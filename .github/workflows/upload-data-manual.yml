@@ -43,7 +43,7 @@ jobs:
         git config --global user.name "${{ secrets.GIT_USER_NAME }}"
         
         cp -r /tmp/news_lk3_data/* .
-        echo "$(date)" >> workflows.log
+        echo "$(date) upload_data-manual" >> ./cron.txt
          
         git add .
         git commit -m "Uploaded data"
