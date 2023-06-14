@@ -1,4 +1,4 @@
-name: Upload Reports - Cron
+name: Upload Reports - Manual
 
 on: workflow_dispatch
 
