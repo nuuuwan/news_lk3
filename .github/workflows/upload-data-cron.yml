@@ -2,7 +2,7 @@ name: Upload Data - Cron
 
 on:
  schedule:
-   - cron:  "34 * * * *"
+   - cron:  "35 * * * *"
 # on: workflow_dispatch
 
 jobs:
