@@ -46,7 +46,7 @@ class WWW:
     def readSelenium(self):
         def nocache():
             options = Options()
-            options.headless = True
+            options.add_argument('--headless')
             driver = webdriver.Firefox(options=options)
             driver.get(self.url)
             content = driver.page_source
