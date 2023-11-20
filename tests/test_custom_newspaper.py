@@ -7,7 +7,7 @@ from news_lk3.custom_newspapers import newspaper_class_list
 
 MAX_ARTICLE_AGE = 86_400 * 1_000
 MIN_ARTICLE_TITLE_LEN = 10
-MAX_PARSE_ARTICLE_TIME = 120
+MAX_PARSE_ARTICLE_TIME = 240
 
 SAFE_NEWSPAPER_CLASS_LIST = newspaper_class_list
 
