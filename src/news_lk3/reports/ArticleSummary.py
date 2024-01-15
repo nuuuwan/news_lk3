@@ -1,3 +1,4 @@
+from functools import cached_property
 import os
 
 from utils import TIME_FORMAT_TIME, Directory, Git, Log, Time, TSVFile
@@ -8,10 +9,10 @@ log = Log('ArticleSummary')
 
 
 class ArticleSummary:
-    @property
+    @cached_property
     def articles(self):
         git = Git('https://github.com/nuuuwan/news_lk3_data.git')
-        git.clone(Article.DIR_REPO, force=True)
+        git.clone(Article.DIR_REPO, force=False)
         git.checkout('main')
 
         articles = []
@@ -24,7 +25,7 @@ class ArticleSummary:
         log.debug(f'Loaded {n_articles} articles')
         return articles
 
-    @property
+    @cached_property
     def summary(self):
         d_list = []
         for article in self.articles:
