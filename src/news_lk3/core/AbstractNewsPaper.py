@@ -70,12 +70,10 @@ class AbstractNewsPaper(ABC):
     def parse_article_urls(cls, soup):
         raise NotImplementedError
 
-
     @classmethod
     def get_time_raw_format(cls):
         return '%Y-%m-%d %H:%M:%S'
 
-    
     @classmethod
     def parse_time_ut(cls, soup):
         meta_time = soup.find('meta', {'itemprop': 'datePublished'})

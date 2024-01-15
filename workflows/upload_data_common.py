@@ -17,8 +17,6 @@ def init():
     os.system(f'mkdir {Article.DIR_REPO_ARTICLES}')
 
 
-
-
 def main(is_test_mode=False):
     init()
 

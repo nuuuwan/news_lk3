@@ -19,18 +19,16 @@ class ReadMe(ArticleSummary):
         )
         lines = [
             f'# Articles (Latest {ReadMe.N_DISPLAY})',
-            f'* As of {TIME_FORMAT_TIME.stringify(Time.now())}',
-            '',
+            f'* As of {TIME_FORMAT_TIME.stringify(Time.now())} *',
         ]
         for article in sorted_articles[: self.N_DISPLAY]:
             lines.extend(
                 [
                     f'## {article.original_title}',
-                    f'* {TIME_FORMAT_TIME.stringify(Time(article.time_ut))} *',
+                    f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}*',
                 ]
                 + article.original_body_lines
-                + ['']
             )
 
-        File(ReadMe.PATH).write_lines(lines)
+        File(ReadMe.PATH).write('\n\n'.join(lines))
         log.debug(f'Wrote {ReadMe.PATH}')

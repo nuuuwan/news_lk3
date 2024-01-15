@@ -8,8 +8,6 @@ log = Log('ArticleSummary')
 
 
 class ArticleSummary:
-
-
     @property
     def articles(self):
         git = Git('https://github.com/nuuuwan/news_lk3_data.git')
