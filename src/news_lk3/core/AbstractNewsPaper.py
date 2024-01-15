@@ -11,7 +11,6 @@ from news_lk3.core.Article import Article
 MIN_ARTICLE_HTML_SIZE = 1_000
 MIN_CHARS_IN_BODY_LINE = 60
 MIN_WORDS_IN_BODY_LINE = 10
-TIME_RAW_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 
 def is_valid_line(line):
@@ -71,11 +70,17 @@ class AbstractNewsPaper(ABC):
     def parse_article_urls(cls, soup):
         raise NotImplementedError
 
+
+    @classmethod
+    def get_time_raw_format(cls):
+        return '%Y-%m-%d %H:%M:%S'
+
+    
     @classmethod
     def parse_time_ut(cls, soup):
         meta_time = soup.find('meta', {'itemprop': 'datePublished'})
         return (
-            TimeFormat(TIME_RAW_FORMAT)
+            TimeFormat(cls.get_time_raw_format())
             .parse(meta_time.get('content').strip())
             .ut
         )
