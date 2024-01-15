@@ -1,4 +1,3 @@
-import os
 
 from utils import TimeFormat
 
@@ -46,11 +45,4 @@ class EconomyNextCom(AbstractNewsPaper):
                 lambda line: line.strip(),
                 header_inner.text.strip().split('\n'),
             )
-        )
-
-    @classmethod
-    def get_test_article_url(cls):
-        return os.path.join(
-            "https://economynext.com",
-            "sri-lanka-president-meets-high-powered-imf-mission-96429/",
         )

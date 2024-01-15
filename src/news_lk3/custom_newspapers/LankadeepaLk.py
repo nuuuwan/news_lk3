@@ -1,4 +1,3 @@
-import os
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -38,12 +37,4 @@ class LankadeepaLk(AbstractNewsPaper):
                 lambda line: line.strip(),
                 header_inner.text.strip().split('\n'),
             )
-        )
-
-    @classmethod
-    def get_test_article_url(cls):
-        return os.path.join(
-            "https://www.lankadeepa.lk",
-            "news",
-            "%E0%B6%87%E0%B6%AD%E0%B7%8A%E0%B6%AF%E0%B7%85-%E0%B7%83%E0%B6%B8%E0%B6%9C-%E0%B6%85%E0%B6%BA%E0%B7%99%E0%B6%9A%E0%B7%8A-%E0%B7%83%E0%B7%90%E0%B6%9A%E0%B6%B4%E0%B7%92%E0%B6%A7/101-615339",  # noqa: E501,
         )

@@ -108,10 +108,6 @@ class AbstractNewsPaper(ABC):
         return article_urls
 
     @classmethod
-    def get_test_article_url(cls):
-        raise NotImplementedError
-
-    @classmethod
     def parse_article(cls, article_url):
         soup = cls.get_soup(article_url)
         if not soup:

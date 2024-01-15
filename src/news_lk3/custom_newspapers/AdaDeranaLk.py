@@ -1,4 +1,3 @@
-import os
 import re
 
 from utils import TimeFormat
@@ -48,11 +47,4 @@ class AdaDeranaLk(AbstractNewsPaper):
                 lambda line: line.strip(),
                 header_inner.text.strip().split('\n'),
             )
-        )
-
-    @classmethod
-    def get_test_article_url(cls):
-        return os.path.join(
-            "http://www.adaderana.lk",
-            "news/83246/10-hour-water-cut-in-suburbs-of-colombo",
         )

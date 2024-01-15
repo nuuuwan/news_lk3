@@ -1,4 +1,3 @@
-import os
 
 from utils import TimeFormat
 
@@ -47,12 +46,4 @@ class NewsFirstLk(AbstractNewsPaper):
                 lambda line: line.strip(),
                 header_inner.text.strip().split('\n'),
             )
-        )
-
-    @classmethod
-    def get_test_article_url(cls):
-        return os.path.join(
-            "https://www.newsfirst.lk",
-            "2022/06/24",
-            "land-for-all-pm-launches-program-to-address-land-issue/",
         )

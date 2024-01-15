@@ -1,4 +1,3 @@
-import os
 
 from utils import TIMEZONE_OFFSET, TimeFormat
 
@@ -53,11 +52,4 @@ class CeylonTodayLk(AbstractNewsPaper):
                 lambda line: line.strip(),
                 div.text.strip().split('\n'),
             )
-        )
-
-    @classmethod
-    def get_test_article_url(cls):
-        return os.path.join(
-            "https://ceylontoday.lk",
-            "2022/06/24/welgama-released-from-bribery-case/",
         )

@@ -1,4 +1,3 @@
-import os
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -35,12 +34,4 @@ class DailyFtLk(AbstractNewsPaper):
                 lambda line: line.strip(),
                 header_inner.text.strip().split('\n'),
             )
-        )
-
-    @classmethod
-    def get_test_article_url(cls):
-        return os.path.join(
-            "https://www.ft.lk",
-            "business",
-            "100-000-jobs-up-for-grabs-for-Lankans-in-Romania/34-736670",
         )

@@ -1,4 +1,3 @@
-import os
 
 from news_lk3.core import AbstractNewsPaper
 
@@ -38,12 +37,4 @@ class DailyMirrorLk(AbstractNewsPaper):
                 lambda line: line.strip(),
                 header_inner.text.strip().split('\n'),
             )
-        )
-
-    @classmethod
-    def get_test_article_url(cls):
-        return os.path.join(
-            "https://www.dailymirror.lk",
-            "opinion",
-            "New-political-formation-under-Dullas-in-the-offing/172-239763",
         )

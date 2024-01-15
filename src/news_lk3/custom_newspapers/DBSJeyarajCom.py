@@ -1,4 +1,3 @@
-import os
 
 from utils import TimeFormat
 
@@ -50,10 +49,4 @@ class DBSJeyarajCom(AbstractNewsPaper):
                 lambda line: line.strip(),
                 body_content.text.strip().split('\n'),
             )
-        )
-
-    @classmethod
-    def get_test_article_url(cls):
-        return os.path.join(
-            "https://dbsjeyaraj.com/dbsj/archives/78103",
         )

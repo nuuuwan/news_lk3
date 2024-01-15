@@ -1,4 +1,3 @@
-import os
 
 from utils import TimeFormat
 
@@ -50,10 +49,4 @@ class BBCComSinhala(AbstractNewsPaper):
                 lambda div: div.text,
                 divs,
             )
-        )
-
-    @classmethod
-    def get_test_article_url(cls):
-        return os.path.join(
-            "https://www.bbc.com/sinhala/sri-lanka-61923325",
         )
