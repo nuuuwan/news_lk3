@@ -25,7 +25,8 @@ class ReadMe(ArticleSummary):
             lines.extend(
                 [
                     f'## {article.original_title}',
-                    f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}*',
+                    f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
+                    + f' - {article.newspaper_id}*',
                 ]
                 + article.original_body_lines
             )
