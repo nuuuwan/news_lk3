@@ -82,10 +82,6 @@ class Article:
     def file_name(self):
         return Article.get_article_file(self.url)
 
-    @property
-    def date_id(self):
-        return TIME_FORMAT_TIME_ID.stringify(Time(self.time_ut))
-
     def __lt__(self, other):
         return self.time_ut < other.time_ut
 
