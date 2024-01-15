@@ -5,7 +5,7 @@ from news_lk3._utils import log
 from news_lk3.core.Article import Article
 from news_lk3.custom_newspapers import newspaper_class_list
 
-DELIM_MD = '\n' * 2
+
 MAX_ARTICLES_TO_UPLOAD = 80
 
 

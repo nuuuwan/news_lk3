@@ -12,7 +12,6 @@ class DailyNewsLk(AbstractNewsPaper):
     @classmethod
     def get_index_urls(cls):
         return [os.path.join(URL_BASE, 'category/local')]
-  
 
     @classmethod
     def parse_article_urls(cls, soup):
