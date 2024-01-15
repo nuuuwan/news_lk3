@@ -1,4 +1,5 @@
 import os
+import tempfile
 
 from utils import TIME_FORMAT_TIME, TIME_FORMAT_TIME_ID, JSONFile, Time, hashx
 
@@ -6,7 +7,7 @@ from news_lk3._utils import log
 
 
 class Article:
-    DIR_REPO = '/tmp/news_lk3_data'
+    DIR_REPO = os.path.join(tempfile.gettempdir(), 'news_lk3_data')
     DIR_REPO_ARTICLES = os.path.join(DIR_REPO, 'articles')
     HASH_SALT = '123019839120398'
     HASH_LENGTH = 8

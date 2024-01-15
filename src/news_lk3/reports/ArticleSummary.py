@@ -8,7 +8,7 @@ log = Log('ArticleSummary')
 
 
 class ArticleSummary:
-    DIR_REPO_REPORTS = os.path.join(Article.DIR_REPO, 'reports')
+
 
     @property
     def articles(self):
@@ -51,13 +51,13 @@ class ArticleSummary:
 
     @property
     def summary_file_path(self):
-        return os.path.join(ArticleSummary.DIR_REPO_REPORTS, 'summary.tsv')
+        return os.path.join(ArticleSummary.DIR_REPO, 'summary.tsv')
 
     def store_summary(self):
         summary = self.summary
-        if not Directory(ArticleSummary.DIR_REPO_REPORTS).exists:
-            os.makedirs(ArticleSummary.DIR_REPO_REPORTS)
-            log.debug(f'Created directory {ArticleSummary.DIR_REPO_REPORTS}')
+        if not Directory(ArticleSummary.DIR_REPO).exists:
+            os.makedirs(ArticleSummary.DIR_REPO)
+            log.debug(f'Created directory {ArticleSummary.DIR_REPO}')
 
         TSVFile(self.summary_file_path).write(summary)
         log.debug(f'Stored summary to {self.summary_file_path}')

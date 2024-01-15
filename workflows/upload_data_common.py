@@ -13,6 +13,9 @@ def init():
     os.system(f'rm -rf {Article.DIR_REPO}')
     os.system(f'mkdir {Article.DIR_REPO}')
 
+    os.system(f'rm -rf {Article.DIR_REPO_ARTICLES}')
+    os.system(f'mkdir {Article.DIR_REPO_ARTICLES}')
+
 
 def main(is_test_mode=False):
     init()
