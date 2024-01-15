@@ -1,7 +1,7 @@
 import os
 import tempfile
 
-from utils import TIME_FORMAT_TIME, TIME_FORMAT_TIME_ID, JSONFile, Time, hashx
+from utils import TIME_FORMAT_TIME, JSONFile, Time, hashx
 
 from news_lk3._utils import log
 
