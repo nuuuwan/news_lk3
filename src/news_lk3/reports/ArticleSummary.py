@@ -4,21 +4,21 @@ from utils import TIME_FORMAT_TIME, Directory, Git, Log, Time, TSVFile
 
 from news_lk3.core import Article
 
-DIR_REPO = '/tmp/news_lk3_data'
-DIR_REPO_REPORTS = os.path.join(DIR_REPO, 'reports')
-
 log = Log('ArticleSummary')
 
 
 class ArticleSummary:
+    DIR_REPO = '/tmp/news_lk3_data'
+    DIR_REPO_REPORTS = os.path.join(DIR_REPO, 'reports')
+
     @property
     def articles(self):
         git = Git('https://github.com/nuuuwan/news_lk3_data.git')
-        git.clone(DIR_REPO, force=True)
+        git.clone(ArticleSummary.DIR_REPO, force=True)
         git.checkout('main')
 
         articles = []
-        for child in Directory(DIR_REPO).children:
+        for child in Directory(ArticleSummary.DIR_REPO).children:
             if isinstance(child, Directory) or child.ext != 'json':
                 continue
             article = Article.load_from_file(child.path)
@@ -52,13 +52,13 @@ class ArticleSummary:
 
     @property
     def summary_file_path(self):
-        return os.path.join(DIR_REPO_REPORTS, 'summary.tsv')
+        return os.path.join(ArticleSummary.DIR_REPO_REPORTS, 'summary.tsv')
 
     def store_summary(self):
         summary = self.summary
-        if not Directory(DIR_REPO_REPORTS).exists:
-            os.makedirs(DIR_REPO_REPORTS)
-            log.debug(f'Created directory {DIR_REPO_REPORTS}')
+        if not Directory(ArticleSummary.DIR_REPO_REPORTS).exists:
+            os.makedirs(ArticleSummary.DIR_REPO_REPORTS)
+            log.debug(f'Created directory {ArticleSummary.DIR_REPO_REPORTS}')
 
         TSVFile(self.summary_file_path).write(summary)
         log.debug(f'Stored summary to {self.summary_file_path}')

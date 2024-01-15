@@ -1,3 +1,5 @@
+import os
+
 from utils import TIME_FORMAT_TIME, File, Log, Time
 
 from news_lk3.reports.ArticleSummary import ArticleSummary
@@ -6,7 +8,7 @@ log = Log('ReadMe')
 
 
 class ReadMe(ArticleSummary):
-    PATH = 'README.md'
+    PATH = os.path.join(ArticleSummary, DIR_REPO, 'README.md')
     N_DISPLAY = 100
 
     def write(self):
