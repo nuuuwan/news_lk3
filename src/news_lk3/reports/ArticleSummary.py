@@ -8,17 +8,16 @@ log = Log('ArticleSummary')
 
 
 class ArticleSummary:
-    DIR_REPO = '/tmp/news_lk3_data'
-    DIR_REPO_REPORTS = os.path.join(DIR_REPO, 'reports')
+    DIR_REPO_REPORTS = os.path.join(Article.DIR_REPO, 'reports')
 
     @property
     def articles(self):
         git = Git('https://github.com/nuuuwan/news_lk3_data.git')
-        git.clone(ArticleSummary.DIR_REPO, force=True)
+        git.clone(Article.DIR_REPO, force=True)
         git.checkout('main')
 
         articles = []
-        for child in Directory(ArticleSummary.DIR_REPO).children:
+        for child in Directory(Article.DIR_REPO_ARTICLES).children:
             if isinstance(child, Directory) or child.ext != 'json':
                 continue
             article = Article.load_from_file(child.path)

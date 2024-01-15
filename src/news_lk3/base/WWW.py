@@ -13,9 +13,6 @@ USER_AGENT = ' '.join(
     ]
 )
 
-ENCODING = 'utf-8'
-SELENIUM_SCROLL_REPEATS = 3
-SELENIUM_SCROLL_WAIT_TIME = 0.5
 
 # pylint: disable=W0212
 ssl._create_default_https_context = ssl._create_unverified_context

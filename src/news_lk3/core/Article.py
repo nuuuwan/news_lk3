@@ -4,12 +4,12 @@ from utils import TIME_FORMAT_TIME, TIME_FORMAT_TIME_ID, JSONFile, Time, hashx
 
 from news_lk3._utils import log
 
-DIR_REPO = '/tmp/news_lk3_data'
-HASH_SALT = '123019839120398'
-HASH_LENGTH = 8
-
 
 class Article:
+    DIR_REPO = '/tmp/news_lk3_data'
+    DIR_REPO_ARTICLES = os.path.join(DIR_REPO, 'articles')
+    HASH_SALT = '123019839120398'
+    HASH_LENGTH = 8
     DEFAULT_ORIGINAL_LANG = 'en'
 
     def __init__(
@@ -30,7 +30,7 @@ class Article:
 
     @staticmethod
     def get_hash(url):
-        return hashx.md5(url + HASH_SALT)[:HASH_LENGTH]
+        return hashx.md5(url + Article.HASH_SALT)[: Article.HASH_LENGTH]
 
     @staticmethod
     def get_article_file_only(url):
@@ -40,7 +40,7 @@ class Article:
     @staticmethod
     def get_article_file(url, dir_prefix=''):
         file_name_only = Article.get_article_file_only(url)
-        return os.path.join(DIR_REPO, file_name_only)
+        return os.path.join(Article.DIR_REPO_ARTICLES, file_name_only)
 
     @staticmethod
     def load_d_from_file(article_file):
