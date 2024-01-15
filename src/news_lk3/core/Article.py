@@ -39,7 +39,7 @@ class Article:
         return f'{h}.json'
 
     @staticmethod
-    def get_article_file(url, dir_prefix=''):
+    def get_article_file(url):
         file_name_only = Article.get_article_file_only(url)
         return os.path.join(Article.DIR_REPO_ARTICLES, file_name_only)
 
