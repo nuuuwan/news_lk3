@@ -28,8 +28,7 @@ class ReadMe(ArticleSummary):
 
         lines = [
             f'# Articles (Latest {ReadMe.N_DISPLAY})',
-            '> [!NOTE]',
-            f'> As of **{TIME_FORMAT_TIME.stringify(Time.now())}**',
+            f'As of **{TIME_FORMAT_TIME.stringify(Time.now())}**',
         ]
         for article in sorted_articles[: self.N_DISPLAY]:
             lines.extend(ReadMe.render_article(article))
