@@ -5,7 +5,6 @@ from news_lk3._utils import log
 from news_lk3.core.Article import Article
 from news_lk3.custom_newspapers import newspaper_class_list
 
-
 MAX_ARTICLES_TO_UPLOAD = 80
 
 
