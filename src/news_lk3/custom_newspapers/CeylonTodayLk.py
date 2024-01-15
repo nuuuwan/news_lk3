@@ -1,4 +1,3 @@
-
 from utils import TIMEZONE_OFFSET, TimeFormat
 
 from news_lk3.core import AbstractNewsPaper

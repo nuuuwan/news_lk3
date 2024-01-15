@@ -1,4 +1,3 @@
-
 from news_lk3.core import AbstractNewsPaper
 
 

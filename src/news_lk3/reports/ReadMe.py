@@ -12,6 +12,14 @@ class ReadMe(ArticleSummary):
     PATH = os.path.join(Article.DIR_REPO, 'README.md')
     N_DISPLAY = 100
 
+    @staticmethod
+    def render_article(article) -> list[str]:
+        return [
+            f'## {article.original_title}',
+            f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
+            + f' - [{article.newspaper_id}]({article.url})*',
+        ] + article.original_body_lines
+
     def write(self):
         articles = self.articles
         sorted_articles = sorted(
@@ -22,14 +30,7 @@ class ReadMe(ArticleSummary):
             f'* As of {TIME_FORMAT_TIME.stringify(Time.now())} *',
         ]
         for article in sorted_articles[: self.N_DISPLAY]:
-            lines.extend(
-                [
-                    f'## {article.original_title}',
-                    f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
-                    + f' - {article.newspaper_id}*',
-                ]
-                + article.original_body_lines
-            )
+            lines.extend(ReadMe.render_article(article))
 
         File(ReadMe.PATH).write('\n\n'.join(lines))
         log.debug(f'Wrote {ReadMe.PATH}')
