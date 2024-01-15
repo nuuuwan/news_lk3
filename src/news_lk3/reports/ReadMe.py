@@ -19,7 +19,7 @@ class ReadMe(ArticleSummary):
             f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
             + f' - [{article.newspaper_id}]({article.url})*',
         ] + article.original_body_lines
-    
+
     @staticmethod
     def render_article_stats(article_list) -> list[str]:
         lines = []
@@ -28,7 +28,7 @@ class ReadMe(ArticleSummary):
             newspaper_to_n[article.newspaper_id] = (
                 newspaper_to_n.get(article.newspaper_id, 0) + 1
             )
-        
+
         lines.append('## Newspaper Stats')
         for newspaper_id, n in newspaper_to_n.items():
             lines.append(f'* {n:, }{newspaper_id}')
