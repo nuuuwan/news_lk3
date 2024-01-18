@@ -21,8 +21,9 @@ class ReadMe(ArticleSummary):
         return [
             f'### {article.original_title}',
             '',
-            f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
-            + f' - [`{article.newspaper_id}`]({article.url})*',
+            f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}*',
+            '',
+            f'[`{article.newspaper_id}`]({article.url}) ',
             '',
             article.get_original_body(
                 max_chars=ReadMe.ARTICLE_BODY_MAX_CHARS

@@ -102,7 +102,7 @@ class Article:
 
     @cache
     def render_continued(self) -> str:
-        return f'[more]({self.url})'
+        return '...'
 
     @cache
     def get_original_body(self, max_chars: int) -> str:
