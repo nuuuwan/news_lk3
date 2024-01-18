@@ -1,7 +1,7 @@
 import math
 import os
 
-from utils import TIME_FORMAT_TIME, File, Log, Time
+from utils import TIME_FORMAT_DATE, TIME_FORMAT_TIME, File, Log, Time
 
 from news_lk3.core import Article
 from news_lk3.reports.ArticleSummary import ArticleSummary
@@ -13,6 +13,7 @@ class ReadMe(ArticleSummary):
     PATH = os.path.join(Article.DIR_REPO, 'README.md')
     N_DISPLAY = 100
     BLOCK_EMOJI = '🟩'
+    ARTICLE_BODY_MAX_CHARS = 480
 
     @staticmethod
     def render_article(article) -> list[str]:
@@ -22,7 +23,9 @@ class ReadMe(ArticleSummary):
             f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
             + f' - [{article.newspaper_id}]({article.url})*',
             '',
-            article.get_original_body(max_chars=1200),
+            article.get_original_body(
+                max_chars=ReadMe.ARTICLE_BODY_MAX_CHARS
+            ),
             '',
         ]
 
@@ -83,7 +86,12 @@ class ReadMe(ArticleSummary):
         lines.extend(ReadMe.render_article_stats(sorted_articles))
 
         lines.extend([f'## Latest Articles ({ReadMe.N_DISPLAY})', ''])
+        prev_date_str = None
         for article in sorted_articles[: self.N_DISPLAY]:
+            date_str = TIME_FORMAT_DATE.stringify(Time(article.time_ut))
+            if date_str != prev_date_str:
+                lines.extend([f'### {date_str}', ''])
+                prev_date_str = date_str
             lines.extend(ReadMe.render_article(article))
 
         File(ReadMe.PATH).write('\n'.join(lines))
