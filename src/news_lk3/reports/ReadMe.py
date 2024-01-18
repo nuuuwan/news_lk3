@@ -29,7 +29,9 @@ class ReadMe(ArticleSummary):
                 newspaper_to_n.get(article.newspaper_id, 0) + 1
             )
         lines.append('## Newspaper Stats')
-        for newspaper_id, n in sorted(newspaper_to_n.items(), key=lambda x: x[1]):
+        for newspaper_id, n in sorted(
+            newspaper_to_n.items(), key=lambda x: x[1]
+        ):
             lines.append(f'* {newspaper_id}: {n:,}')
         lines.append(f'* **Total**: **{len(article_list):,}**')
         return lines

@@ -1,5 +1,5 @@
-from functools import cached_property
 import os
+from functools import cached_property
 
 from utils import TIME_FORMAT_TIME, Directory, Git, Log, Time, TSVFile
 
