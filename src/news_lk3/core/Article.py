@@ -1,3 +1,4 @@
+from functools import cache, cached_property
 import os
 import tempfile
 
@@ -98,3 +99,20 @@ class Article:
                 ),
             ]
         )
+
+    @cached_property
+    def original_body(self) -> str:
+        return '\n\n'.join(self.original_body_lines)    
+    
+    @cache
+    def get_original_body(self, max_chars: int) -> str:
+        total_chars = 0
+        display_lines = []
+        for line in self.original_body_lines:
+            if len(line) + total_chars > max_chars:
+                display_lines.append('...')
+                break
+            display_lines.append(line)
+            total_chars += len(line)
+
+        return '\n\n'.join(display_lines)

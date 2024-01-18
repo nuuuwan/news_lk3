@@ -20,7 +20,8 @@ class ReadMe(ArticleSummary):
             f'### {article.original_title}',
             f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
             + f' - [{article.newspaper_id}]({article.url})*',
-        ] + article.original_body_lines
+            article.get_original_body(max_chars=1200)
+        ] 
 
     @staticmethod
     def render_stats_line(label: str, value: int, n_per_block: int):
@@ -75,5 +76,5 @@ class ReadMe(ArticleSummary):
         for article in sorted_articles[: self.N_DISPLAY]:
             lines.extend(ReadMe.render_article(article))
 
-        File(ReadMe.PATH).write('\n\n'.join(lines))
+        File(ReadMe.PATH).write('\n'.join(lines))
         log.debug(f'Wrote {ReadMe.PATH}')
