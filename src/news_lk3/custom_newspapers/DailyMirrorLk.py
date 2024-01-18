@@ -4,7 +4,8 @@ from news_lk3.core import AbstractNewsPaper
 class DailyMirrorLk(AbstractNewsPaper):
     @classmethod
     def get_time_raw_format(cls):
-        return '%d %B %Y %I:%M %p'
+        return '%Y-%m-%dT%H:%M:%S%z'
+        # return '%d %B %Y %I:%M %p' # previous
 
     @classmethod
     def get_index_urls(cls):
