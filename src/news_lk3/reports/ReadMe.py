@@ -43,7 +43,7 @@ class ReadMe(ArticleSummary):
         )
 
         lines = [
-            f'# Newspaper Articles from Sri Lanka :lka:',
+            '# Newspaper Articles from Sri Lanka :lka:',
             f'As of **{TIME_FORMAT_TIME.stringify(Time.now())}**',
         ]
         lines.extend(ReadMe.render_article_stats(sorted_articles))
