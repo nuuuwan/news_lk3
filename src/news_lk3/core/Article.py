@@ -1,6 +1,6 @@
 import os
 import tempfile
-from functools import cache, cached_property
+from functools import cache
 
 from utils import TIME_FORMAT_TIME, JSONFile, Time, hashx
 
@@ -100,13 +100,9 @@ class Article:
             ]
         )
 
-    @cached_property
-    def original_body(self) -> str:
-        return '\n\n'.join(self.original_body_lines)
-
     @cache
     def render_continued(self) -> str:
-        return f'[⇨]({self.url})'
+        return f'[more]({self.url})'
 
     @cache
     def get_original_body(self, max_chars: int) -> str:

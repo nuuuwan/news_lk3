@@ -22,7 +22,7 @@ class ReadMe(ArticleSummary):
             f'### {article.original_title}',
             '',
             f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
-            + f' - [{article.newspaper_id}]({article.url})*',
+            + f' - [`{article.newspaper_id}`]({article.url})*',
             '',
             article.get_original_body(
                 max_chars=ReadMe.ARTICLE_BODY_MAX_CHARS
@@ -33,7 +33,7 @@ class ReadMe(ArticleSummary):
     @staticmethod
     def render_stats_line(label: str, value: int, n_per_block: int):
         value_str = ReadMe.BLOCK_EMOJI * int(round(value / n_per_block))
-        return f'* {value_str} ({value:,}) {label}'
+        return f'{label} | {value:,} | {value_str} '
 
     @staticmethod
     def round10(n: int) -> int:
@@ -56,11 +56,14 @@ class ReadMe(ArticleSummary):
                 '',
                 f'*Scraped **{len(article_list):,}** Articles*',
                 '',
-                f'{ReadMe.BLOCK_EMOJI} = {n_per_block}',
-                '',
             ]
         )
-
+        lines.extend(
+            [
+                f'newspaper | n | {ReadMe.BLOCK_EMOJI} ≈ {n_per_block:,}',
+                '--- | ---: | :---',
+            ]
+        )
         for newspaper_id, n in sorted(
             newspaper_to_n.items(), key=lambda x: x[1]
         ):
@@ -68,7 +71,11 @@ class ReadMe(ArticleSummary):
                 ReadMe.render_stats_line(newspaper_id, n, n_per_block)
             )
 
-        lines.append('')
+        lines.extend(
+            [
+                '',
+            ]
+        )
 
         return lines
 
