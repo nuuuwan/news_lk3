@@ -20,8 +20,8 @@ class ReadMe(ArticleSummary):
             f'### {article.original_title}',
             f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
             + f' - [{article.newspaper_id}]({article.url})*',
-            article.get_original_body(max_chars=1200)
-        ] 
+            article.get_original_body(max_chars=1200),
+        ]
 
     @staticmethod
     def render_stats_line(label: str, value: int, n_per_block: int):
