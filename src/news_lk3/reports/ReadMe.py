@@ -1,7 +1,7 @@
 import math
 import os
 
-from utils import TIME_FORMAT_DATE, TIME_FORMAT_TIME, File, Log, Time
+from utils import TIME_FORMAT_TIME, File, Log, Time, TimeFormat
 
 from news_lk3.core import Article
 from news_lk3.reports.ArticleSummary import ArticleSummary
@@ -14,6 +14,7 @@ class ReadMe(ArticleSummary):
     N_DISPLAY = 100
     BLOCK_EMOJI = '🟩'
     ARTICLE_BODY_MAX_CHARS = 480
+    TIME_FORMAT_DATE_STR = TimeFormat('%Y-%m-%d (%A)')
 
     @staticmethod
     def render_article(article) -> list[str]:
@@ -88,7 +89,9 @@ class ReadMe(ArticleSummary):
         lines.extend([f'## Latest {ReadMe.N_DISPLAY:,} Articles ', ''])
         prev_date_str = None
         for article in sorted_articles[: self.N_DISPLAY]:
-            date_str = TIME_FORMAT_DATE.stringify(Time(article.time_ut))
+            date_str = ReadMe.TIME_FORMAT_DATE_STR.stringify(
+                Time(article.time_ut)
+            )
             if date_str != prev_date_str:
                 lines.extend([f'### {date_str}', ''])
                 prev_date_str = date_str

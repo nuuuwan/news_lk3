@@ -106,7 +106,7 @@ class Article:
 
     @cache
     def render_continued(self) -> str:
-        return f'[continued]({self.url})'
+        return f'[⇨]({self.url})'
 
     @cache
     def get_original_body(self, max_chars: int) -> str:
