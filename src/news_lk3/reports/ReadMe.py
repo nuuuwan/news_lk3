@@ -85,7 +85,7 @@ class ReadMe(ArticleSummary):
         ]
         lines.extend(ReadMe.render_article_stats(sorted_articles))
 
-        lines.extend([f'## Latest Articles ({ReadMe.N_DISPLAY})', ''])
+        lines.extend([f'## Latest {ReadMe.N_DISPLAY:,} Articles ', ''])
         prev_date_str = None
         for article in sorted_articles[: self.N_DISPLAY]:
             date_str = TIME_FORMAT_DATE.stringify(Time(article.time_ut))
