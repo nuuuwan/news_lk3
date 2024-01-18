@@ -3,7 +3,7 @@ name: workflows/upload_reports.py
 on:
   workflow_dispatch:
   schedule:
-    - cron:  "55 * * * *"
+    - cron:  "*/15 * * * *"
 
 jobs:
   upload-reports:
