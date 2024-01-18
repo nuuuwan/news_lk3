@@ -18,9 +18,12 @@ class ReadMe(ArticleSummary):
     def render_article(article) -> list[str]:
         return [
             f'### {article.original_title}',
+            '',
             f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}'
             + f' - [{article.newspaper_id}]({article.url})*',
+            '',
             article.get_original_body(max_chars=1200),
+            '',
         ]
 
     @staticmethod
@@ -46,8 +49,11 @@ class ReadMe(ArticleSummary):
         lines.extend(
             [
                 '## Newspaper Stats',
+                '',
                 f'*Scraped **{len(article_list):,}** Articles*',
+                '',
                 f'{ReadMe.BLOCK_EMOJI} = {n_per_block}',
+                '',
             ]
         )
 
@@ -57,6 +63,8 @@ class ReadMe(ArticleSummary):
             lines.append(
                 ReadMe.render_stats_line(newspaper_id, n, n_per_block)
             )
+
+        lines.append('')
 
         return lines
 
@@ -68,11 +76,13 @@ class ReadMe(ArticleSummary):
 
         lines = [
             '# Newspaper Articles from Sri Lanka :sri_lanka:',
+            '',
             f'As of **{TIME_FORMAT_TIME.stringify(Time.now())}**',
+            '',
         ]
         lines.extend(ReadMe.render_article_stats(sorted_articles))
 
-        lines.append(f'## Latest Articles ({ReadMe.N_DISPLAY})')
+        lines.extend([f'## Latest Articles ({ReadMe.N_DISPLAY})', ''])
         for article in sorted_articles[: self.N_DISPLAY]:
             lines.extend(ReadMe.render_article(article))
 
