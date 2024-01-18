@@ -105,12 +105,16 @@ class Article:
         return '\n\n'.join(self.original_body_lines)
 
     @cache
+    def render_continued(self) -> str:
+        return f'([continued...]({self.url}))'
+
+    @cache
     def get_original_body(self, max_chars: int) -> str:
         total_chars = 0
         display_lines = []
         for line in self.original_body_lines:
             if len(line) + total_chars > max_chars:
-                display_lines.append('...')
+                display_lines.append(self.render_continued())
                 break
             display_lines.append(line)
             total_chars += len(line)
