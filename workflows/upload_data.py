@@ -1,11 +1,16 @@
 import os
 import random
-
+import time
+from utils import SECONDS_IN
 from news_lk3._utils import log
 from news_lk3.core import Article
 from news_lk3.custom_newspapers import newspaper_class_list
 
-MAX_ARTICLES_TO_UPLOAD = 80
+TEST_MODE = os.name == 'nt'
+log.debug(f'{TEST_MODE=}')
+MAX_RUNNING_TIME_M = 0.1 if TEST_MODE else 10
+MAX_RUNNING_TIME_S = MAX_RUNNING_TIME_M * SECONDS_IN.MINUTE
+log.debug(f'{MAX_RUNNING_TIME_S=}')
 
 
 def init_dirs():
@@ -15,7 +20,8 @@ def init_dirs():
             log.debug(f'Created directory {dir}')
 
 
-def main(is_test_mode=False):
+def main():
+    t_start = time.time()
     init_dirs()
 
     random.shuffle(newspaper_class_list)
@@ -31,18 +37,16 @@ def main(is_test_mode=False):
         )
 
         n_total += n_paper
-
-        if is_test_mode:
-            if n_total > 0:
-                break
-
-        if n_total > MAX_ARTICLES_TO_UPLOAD:
+        log.debug(f'{n_total=}')
+        delta_t = time.time() - t_start
+        log.debug(f'{delta_t=:.1f}s')
+        if delta_t > MAX_RUNNING_TIME_S:
+            log.info(
+                f'{delta_t=:.1f}s > {MAX_RUNNING_TIME_S}s. Stopping.')
             break
 
     log.info(f'Scraped {n_total} articles in total.')
 
 
 if __name__ == '__main__':
-    TEST_MODE = os.name == 'nt'
-    log.debug(f'{TEST_MODE=}')
-    main(TEST_MODE)
+    main()
