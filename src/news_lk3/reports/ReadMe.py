@@ -10,27 +10,25 @@ log = Log('ReadMe')
 
 class ReadMe(ArticleSummary):
     PATH = os.path.join(Article.DIR_REPO, 'README.md')
-    N_DISPLAY = 100
+    N_DISPLAY = 5
     ARTICLE_BODY_MAX_CHARS = 480
     TIME_FORMAT_DATE_STR = TimeFormat('%Y-%m-%d (%A)')
 
     @staticmethod
     def render_article(article) -> list[str]:
-        ext_article = ExtArticle.from_article(article, force_extend=False)
+        ea = ExtArticle.from_article(article, force_extend=False)
         return [
-            f'### {ext_article.title_display}',
+            f'### {ea.title_display}',
             '',
             f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}*'
             + f' · [`{article.newspaper_id}`]({article.url})'
             + f' · `{article.original_lang}`',
             '',
-            ext_article.get_summarized_body(
-                max_chars=ReadMe.ARTICLE_BODY_MAX_CHARS
-            ),
+            ea.get_summarized_body(max_chars=ReadMe.ARTICLE_BODY_MAX_CHARS),
             '',
-            f'[Data]({ext_article.relative_article_file_path_unix})',
+            f'[Data]({ea.relative_article_file_path_unix})',
             '',
-            f'[Extended Data]({ext_article.relative_ext_article_file_path_unix})',
+            f'[Extended Data]({ea.relative_ext_article_file_path_unix})',
             '',
             '---' '',
         ]

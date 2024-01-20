@@ -13,16 +13,17 @@ MAX_RUNNING_TIME_M = 0.1 if TEST_MODE else 10
 MAX_RUNNING_TIME_S = MAX_RUNNING_TIME_M * SECONDS_IN.MINUTE
 log.debug(f'{MAX_RUNNING_TIME_S=}')
 
+
 def cleanup_HACK():
     for file_name in os.listdir(Article.DIR_REPO):
         if file_name.endswith('.ext.json'):
             os.remove(os.path.join(Article.DIR_REPO, file_name))
-    
+
 
 def main():
     t_start = time.time()
     articles = Article.list_from_remote()
-    
+
     cleanup_HACK()
 
     for article in articles:
@@ -32,12 +33,12 @@ def main():
             log.info(f'{d_time=:.1f}s > {MAX_RUNNING_TIME_S}s. Stopping.')
             break
 
-        ext_article = ExtArticle.from_article(article, force_extend=True)
-        if os.path.exists(ext_article.relative_ext_article_file_path):
+        ea = ExtArticle.from_article(article, force_extend=True)
+        if os.path.exists(ea.relative_ext_article_file_path):
             log.debug(
-                f'{ext_article.relative_ext_article_file_path} exists. Skipping.')
+                f'{ea.relative_ext_article_file_path} exists. Skipping.')
             continue
-        ext_article.store()
+        ea.store()
 
 
 if __name__ == '__main__':

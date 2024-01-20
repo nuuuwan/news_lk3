@@ -10,10 +10,15 @@ log = Log('ExtArticleFileSystem')
 class ExtArticleFileSystem:
     @staticmethod
     def get_extended_data(article: Article):
-        file_name = Article.get_article_file_name(article.url)
-        if not os.path.exists(file_name):
+        file_path = os.path.join(
+            Article.DIR_REPO,
+            'ext_articles',
+            ExtArticleFileSystem.get_ext_article_file_name(article.url),
+        )
+
+        if not os.path.exists(file_path):
             return {}
-        return JSONFile(file_name).read()
+        return JSONFile(file_path).read()
 
     @classmethod
     def from_article(cls, article: Article, force_extend: bool):

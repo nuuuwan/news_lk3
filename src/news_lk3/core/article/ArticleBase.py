@@ -1,6 +1,3 @@
-from utils import TIME_FORMAT_TIME, Time
-
-
 class ArticleBase:
     DEFAULT_ORIGINAL_LANG = 'en'
 
@@ -44,4 +41,3 @@ class ArticleBase:
 
     def __lt__(self, other):
         return self.time_ut < other.time_ut
-
