@@ -1,7 +1,9 @@
 import os
 import random
 import time
+
 from utils import SECONDS_IN
+
 from news_lk3._utils import log
 from news_lk3.core import Article
 from news_lk3.custom_newspapers import newspaper_class_list
