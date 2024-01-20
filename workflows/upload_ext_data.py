@@ -14,11 +14,9 @@ MAX_RUNNING_TIME_S = MAX_RUNNING_TIME_M * SECONDS_IN.MINUTE
 log.debug(f'{MAX_RUNNING_TIME_S=}')
 
 
-
 def main():
     t_start = time.time()
     articles = Article.list_from_remote()
-
 
     for article in articles:
         d_time = time.time() - t_start
