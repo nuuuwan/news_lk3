@@ -1,4 +1,3 @@
-import math
 import os
 
 from utils import TIME_FORMAT_TIME, File, Log, Time, TimeFormat
@@ -12,7 +11,6 @@ log = Log('ReadMe')
 class ReadMe(ArticleSummary):
     PATH = os.path.join(Article.DIR_REPO, 'README.md')
     N_DISPLAY = 100
-    BLOCK_EMOJI = '🟩'
     ARTICLE_BODY_MAX_CHARS = 480
     TIME_FORMAT_DATE_STR = TimeFormat('%Y-%m-%d (%A)')
 
@@ -33,15 +31,8 @@ class ReadMe(ArticleSummary):
         ]
 
     @staticmethod
-    def render_stats_line(label: str, value: int, n_per_block: int):
-        value_str = ReadMe.BLOCK_EMOJI * int(round(value / n_per_block))
-        return f'{label} | {value:,} | {value_str} '
-
-    @staticmethod
-    def round10(n: int) -> int:
-        log_n = math.log10(n)
-        n_rounded = 10 ** math.floor(log_n)
-        return n_rounded
+    def render_stats_line(label: str, value: int):
+        return f'{label} | {value:,}'
 
     @staticmethod
     def render_ext_article_stats(article_list) -> list[str]:
@@ -76,23 +67,19 @@ class ReadMe(ArticleSummary):
 
     @staticmethod
     def render_article_stats(article_list: list[Article]) -> list[str]:
-        newspaper_to_n = ReadMe.get_newspaper_to_n(article_list)
-        n_per_block = ReadMe.round10(max(newspaper_to_n.values()) / 10)
         lines = [
             '## Newspaper Stats',
             '',
             f'*Scraped **{len(article_list):,}** Articles*',
             '',
-            f'newspaper | n | {ReadMe.BLOCK_EMOJI} ≈ {n_per_block:,}',
-            '--- | ---: | :---',
+            'newspaper | n',
+            '--- | ---:',
         ]
-
+        newspaper_to_n = ReadMe.get_newspaper_to_n(article_list)
         for newspaper_id, n in sorted(
             newspaper_to_n.items(), key=lambda x: x[1]
         ):
-            lines.append(
-                ReadMe.render_stats_line(newspaper_id, n, n_per_block)
-            )
+            lines.append(ReadMe.render_stats_line(newspaper_id, n))
 
         lines.append('')
 
