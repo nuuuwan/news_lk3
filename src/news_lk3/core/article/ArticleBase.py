@@ -45,16 +45,3 @@ class ArticleBase:
     def __lt__(self, other):
         return self.time_ut < other.time_ut
 
-    def __str__(self):
-        return '\n'.join(
-            [
-                self.newspaper_id,
-                self.url,
-                TIME_FORMAT_TIME.stringify(Time(self.time_ut)),
-                self.original_lang,
-                self.original_title,
-                '\n'.join(
-                    self.original_body_lines,
-                ),
-            ]
-        )
