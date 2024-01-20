@@ -8,7 +8,7 @@ from news_lk3.core import Article, ExtArticle
 
 log = Log('upload_ext_data')
 
-MAX_RUNNING_TIME_S = 1 * SECONDS_IN.MINUTE
+MAX_RUNNING_TIME_S = 13 * SECONDS_IN.MINUTE
 
 
 def main():
