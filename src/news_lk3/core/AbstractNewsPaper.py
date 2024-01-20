@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from utils import String, TimeFormat, mr
 
 from news_lk3._utils import log
-from news_lk3.base.WWW import WWW
+from news_lk3.base import WWW
 from news_lk3.core.article.Article import Article
 
 MIN_ARTICLE_HTML_SIZE = 1_000
@@ -143,7 +143,7 @@ class AbstractNewsPaper(ABC):
     @classmethod
     def parse_and_store_article(cls, article_url):
         log.debug(f'[parse_and_store_article] {article_url}...')
-        article_file = Article.get_article_file(article_url)
+        article_file = Article.get_article_file_name(article_url)
         if os.path.exists(article_file):
             log.info(f'{article_file} already exists. Not parsing.')
             return None

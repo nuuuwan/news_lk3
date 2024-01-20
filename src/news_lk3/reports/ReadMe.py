@@ -28,6 +28,7 @@ class ReadMe(ArticleSummary):
                 max_chars=ReadMe.ARTICLE_BODY_MAX_CHARS
             ),
             '',
+            '---' '',
         ]
 
     @staticmethod
@@ -40,7 +41,7 @@ class ReadMe(ArticleSummary):
         n_ext_articles = 0
         for article in article_list:
             ext_article = ExtArticle.from_article(article, force_extend=False)
-            if os.path.exists(ext_article.file_name):
+            if os.path.exists(ext_article.relative_ext_article_file_path):
                 n_ext_articles += 1
 
         p_ext_articles = n_ext_articles / n_articles

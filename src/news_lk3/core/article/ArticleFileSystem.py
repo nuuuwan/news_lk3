@@ -10,6 +10,7 @@ log = Log('ArticleLoader')
 class ArticleFileSystem:
     DIR_REPO = os.path.join(tempfile.gettempdir(), 'news_lk3_data')
     DIR_REPO_ARTICLES = os.path.join(DIR_REPO, 'articles')
+
     HASH_SALT = '123019839120398'
     HASH_LENGTH = 8
 
@@ -20,16 +21,11 @@ class ArticleFileSystem:
         ]
 
     @staticmethod
-    def get_article_file_only(url):
+    def get_article_file_name(url):
         h = ArticleFileSystem.get_hash(url)
         return f'{h}.json'
 
-    @staticmethod
-    def get_article_file(url):
-        file_name_only = ArticleFileSystem.get_article_file_only(url)
-        return os.path.join(
-            ArticleFileSystem.DIR_REPO_ARTICLES, file_name_only
-        )
+
 
     @staticmethod
     def load_d_from_file(article_file):
@@ -41,12 +37,24 @@ class ArticleFileSystem:
         return cls.from_dict(d)
 
     @property
-    def file_name(self):
-        return ArticleFileSystem.get_article_file(self.url)
+    def relative_article_file_path(self):
+        return os.path.join(
+            'articles', ArticleFileSystem.get_article_file_name(self.url)
+        )
+
+    @property
+    def relative_article_file_path_unix(self):
+        return self.relative_article_file_path.replace('\\', '/')
+
+    @property
+    def temp_article_file_path(self):
+        return os.path.join(
+            ArticleFileSystem.DIR_REPO, self.relative_article_file_path
+        )
 
     def store(self):
-        JSONFile(self.file_name).write(self.to_dict)
-        log.info(f'Stored {self.file_name}.')
+        JSONFile(self.temp_article_file_path).write(self.to_dict)
+        log.info(f'Stored {self.temp_article_file_path}.')
 
     @classmethod
     @cache

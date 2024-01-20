@@ -8,11 +8,9 @@ log = Log('ExtArticleFileSystem')
 
 
 class ExtArticleFileSystem:
-    DIR_REPO_ARTICLES_EXT = os.path.join(Article.DIR_REPO, 'articles_ext')
-
     @staticmethod
     def get_extended_data(article: Article):
-        file_name = Article.get_article_file(article.url)
+        file_name = Article.get_article_file_name(article.url)
         if not os.path.exists(file_name):
             return {}
         return JSONFile(file_name).read()
@@ -39,21 +37,24 @@ class ExtArticleFileSystem:
         )
 
     @staticmethod
-    def get_article_file_only(url):
+    def get_ext_article_file_name_only(url):
         h = Article.get_hash(url)
         return f'{h}.ext.json'
 
-    @staticmethod
-    def get_article_file(url):
-        file_name_only = ExtArticleFileSystem.get_article_file_only(url)
-        return os.path.join(
-            ExtArticleFileSystem.DIR_REPO_ARTICLES_EXT, file_name_only
-        )
+    @property
+    def relative_ext_article_file_path(self):
+        return ExtArticleFileSystem.get_ext_article_file_name_only(self.url)
 
     @property
-    def file_name(self):
-        return ExtArticleFileSystem.get_article_file(self.url)
+    def relative_ext_article_file_path_unix(self):
+        return self.relative_ext_article_file_path.replace('\\', '/')
+
+    @property
+    def temp_ext_article_file_path(self):
+        return os.path.join(
+            Article.DIR_REPO, self.relative_ext_article_file_path
+        )
 
     def store(self):
-        JSONFile(self.file_name).write(self.to_dict)
-        log.info(f'Stored {self.file_name}.')
+        JSONFile(self.temp_ext_article_file_path).write(self.to_dict)
+        log.info(f'Stored {self.relative_ext_article_file_path}.')

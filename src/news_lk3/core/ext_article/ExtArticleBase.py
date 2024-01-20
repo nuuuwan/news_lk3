@@ -1,14 +1,9 @@
-import random
-import time
-
-from googletrans import Translator
 from utils import Log
 
+from news_lk3.base import Translator
 from news_lk3.core.article.Article import Article
 
 log = Log('ExtArticleBase')
-
-COMMON_TRANSLATOR = Translator()
 
 
 class ExtArticleBase(Article):
@@ -42,43 +37,14 @@ class ExtArticleBase(Article):
         for dest in ['si', 'ta', 'en']:
             if src == dest:
                 continue
+            translator = Translator(src, dest)
 
-            def translate_single(text):
-                try:
-                    time_sleep_s = random.random() * 0.5
-                    time.sleep(time_sleep_s)
-                    result = COMMON_TRANSLATOR.translate(
-                        text,
-                        src=src,
-                        dest=dest,
-                    )
-                    result_text = result.text if result else None
-                except Exception as e:
-                    log.error(
-                        f'Could not translate "{text}" ({src}) to {dest}: "{e}"'
-                    )
-                    result_text = None
-
-                log.debug(f'{text} -> {result_text}')
-                return result_text
-
-            def translate(text) -> str:
-                DELIM = '. '
-                sentences = text.split(DELIM)
-                translated_sentences = []
-                for sentence in sentences:
-                    translated_sentence = (
-                        translate_single(sentence) or sentence
-                    )
-                    translated_sentences.append(translated_sentence)
-                return DELIM.join(translated_sentences)
-
-            translated_title = translate(
+            translated_title = translator.translate(
                 article.original_title,
             )
             translated_body_lines = []
             for line in article.original_body_lines:
-                translated_line = translate(
+                translated_line = translator.translate(
                     line,
                 )
                 translated_body_lines.append(translated_line)
