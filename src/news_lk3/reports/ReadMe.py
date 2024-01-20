@@ -40,7 +40,6 @@ class ReadMe(ArticleSummary):
         n_ext_articles = 0
         for article in article_list:
             ext_article = ExtArticle.from_article(article, force_extend=False)
-            print(ext_article.file_name)
             if os.path.exists(ext_article.file_name):
                 n_ext_articles += 1
 
