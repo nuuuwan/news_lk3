@@ -1,9 +1,10 @@
 import os
 
+from _upload_common import init_dir
 from utils import Log
 
 from news_lk3.core import Article, ExtArticle
-from _upload_common import init_dir
+
 log = Log('upload_ext_data')
 
 MAX_N_STORED = 20

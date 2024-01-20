@@ -1,10 +1,13 @@
+import time
+
 from googletrans import Translator
 from utils import Log
-import time
+
 from news_lk3.core.article.Article import Article
 
 log = Log('ExtArticleBase')
 
+COMMON_TRANSLATOR = Translator()
 
 class ExtArticleBase(Article):
     def __init__(
@@ -31,16 +34,16 @@ class ExtArticleBase(Article):
 
     @staticmethod
     def get_translated_text(article: Article):
-        translator = Translator()
         idx = {}
         for target_lang in ['si', 'ta', 'en']:
             if article.original_lang == target_lang:
                 continue
 
-            def translate(text):
+            def translate_single(text):
+                TIME_SLEEP_S = 1
                 try:
-                    time.sleep(1)
-                    result = translator.translate(
+                    time.sleep(TIME_SLEEP_S)
+                    result = COMMON_TRANSLATOR.translate(
                         text,
                         src=article.original_lang,
                         dest=target_lang,
@@ -53,7 +56,17 @@ class ExtArticleBase(Article):
                 log.debug(f'{text} -> {result_text}')
                 return result_text
 
-         
+            def translate(text) -> str:
+                DELIM = '. '
+                sentences = text.split(DELIM)
+                translated_sentences = []
+                for sentence in sentences:
+                    translated_sentence = (
+                        translate_single(sentence) or sentence
+                    )
+                    translated_sentences.append(translated_sentence)
+                return DELIM.join(translated_sentences)
+
             translated_title = translate(
                 article.original_title,
             )
