@@ -6,12 +6,12 @@ class ArticleBase:
 
     def __init__(
         self,
-        newspaper_id,
-        url,
-        time_ut,
-        original_lang,
-        original_title,
-        original_body_lines,
+        newspaper_id: str,
+        url: str,
+        time_ut: int,
+        original_lang: str,
+        original_title: str,
+        original_body_lines: list[str],
     ):
         self.newspaper_id = newspaper_id
         self.url = url

@@ -6,7 +6,7 @@ from utils import JSONFile, Log, hashx
 log = Log('ArticleLoader')
 
 
-class ArticleLoader:
+class ArticleFileSystem:
     DIR_REPO = os.path.join(tempfile.gettempdir(), 'news_lk3_data')
     DIR_REPO_ARTICLES = os.path.join(DIR_REPO, 'articles')
     HASH_SALT = '123019839120398'
@@ -14,19 +14,19 @@ class ArticleLoader:
 
     @staticmethod
     def get_hash(url):
-        return hashx.md5(url + ArticleLoader.HASH_SALT)[
-            : ArticleLoader.HASH_LENGTH
+        return hashx.md5(url + ArticleFileSystem.HASH_SALT)[
+            : ArticleFileSystem.HASH_LENGTH
         ]
 
     @staticmethod
     def get_article_file_only(url):
-        h = ArticleLoader.get_hash(url)
+        h = ArticleFileSystem.get_hash(url)
         return f'{h}.json'
 
     @staticmethod
     def get_article_file(url):
-        file_name_only = ArticleLoader.get_article_file_only(url)
-        return os.path.join(ArticleLoader.DIR_REPO_ARTICLES, file_name_only)
+        file_name_only = ArticleFileSystem.get_article_file_only(url)
+        return os.path.join(ArticleFileSystem.DIR_REPO_ARTICLES, file_name_only)
 
     @staticmethod
     def load_d_from_file(article_file):
@@ -39,7 +39,7 @@ class ArticleLoader:
 
     @property
     def file_name(self):
-        return ArticleLoader.get_article_file(self.url)
+        return ArticleFileSystem.get_article_file(self.url)
 
     def store(self):
         JSONFile(self.file_name).write(self.to_dict)
