@@ -6,7 +6,7 @@ from utils import String, TimeFormat, mr
 
 from news_lk3._utils import log
 from news_lk3.base.WWW import WWW
-from news_lk3.core.Article import Article
+from news_lk3.core.article.Article import Article
 
 MIN_ARTICLE_HTML_SIZE = 1_000
 MIN_CHARS_IN_BODY_LINE = 60
