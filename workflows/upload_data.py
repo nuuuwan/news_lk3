@@ -10,7 +10,7 @@ from news_lk3.custom_newspapers import newspaper_class_list
 
 TEST_MODE = os.name == 'nt'
 log.debug(f'{TEST_MODE=}')
-MAX_RUNNING_TIME_M = 0.1 if TEST_MODE else 10
+MAX_RUNNING_TIME_M = 0.1 if TEST_MODE else 5
 MAX_RUNNING_TIME_S = MAX_RUNNING_TIME_M * SECONDS_IN.MINUTE
 log.debug(f'{MAX_RUNNING_TIME_S=}')
 
