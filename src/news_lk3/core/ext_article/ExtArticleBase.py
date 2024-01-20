@@ -2,7 +2,7 @@ import time
 
 from googletrans import Translator
 from utils import Log
-
+import random
 from news_lk3.core.article.Article import Article
 
 log = Log('ExtArticleBase')
@@ -43,9 +43,9 @@ class ExtArticleBase(Article):
                 continue
 
             def translate_single(text):
-                TIME_SLEEP_S = 1
                 try:
-                    time.sleep(TIME_SLEEP_S)
+                    time_sleep_s = random.random() * 0.5
+                    time.sleep(time_sleep_s)
                     result = COMMON_TRANSLATOR.translate(
                         text,
                         src=src,
