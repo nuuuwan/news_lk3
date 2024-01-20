@@ -2,7 +2,7 @@ import os
 import time
 
 from _upload_common import init_dir
-from utils import SECONDS_IN, Log, Time, TIME_FORMAT_TIME
+from utils import SECONDS_IN, Log
 
 from news_lk3.core import Article, ExtArticle
 

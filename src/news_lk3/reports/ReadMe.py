@@ -87,7 +87,6 @@ class ReadMe(ArticleSummary):
 
     def write(self):
         articles = Article.list_from_remote()
-  
 
         lines = [
             '# Newspaper Articles from Sri Lanka :sri_lanka:',
