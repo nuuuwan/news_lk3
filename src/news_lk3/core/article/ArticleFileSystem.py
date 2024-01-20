@@ -25,8 +25,6 @@ class ArticleFileSystem:
         h = ArticleFileSystem.get_hash(url)
         return f'{h}.json'
 
-
-
     @staticmethod
     def load_d_from_file(article_file):
         return JSONFile(article_file).read()

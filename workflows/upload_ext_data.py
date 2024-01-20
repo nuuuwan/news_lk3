@@ -1,7 +1,6 @@
 import os
 import time
 
-
 from utils import SECONDS_IN, Log
 
 from news_lk3.core import Article, ExtArticle
@@ -13,6 +12,7 @@ log.debug(f'{TEST_MODE=}')
 MAX_RUNNING_TIME_M = 0.1 if TEST_MODE else 10
 MAX_RUNNING_TIME_S = MAX_RUNNING_TIME_M * SECONDS_IN.MINUTE
 log.debug(f'{MAX_RUNNING_TIME_S=}')
+
 
 def main():
     t_start = time.time()

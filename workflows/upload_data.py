@@ -1,8 +1,6 @@
 import os
 import random
 
-
-
 from news_lk3._utils import log
 from news_lk3.custom_newspapers import newspaper_class_list
 
@@ -10,7 +8,6 @@ MAX_ARTICLES_TO_UPLOAD = 80
 
 
 def main(is_test_mode=False):
-
 
     random.shuffle(newspaper_class_list)
     n = len(newspaper_class_list)

@@ -28,6 +28,10 @@ class ReadMe(ArticleSummary):
                 max_chars=ReadMe.ARTICLE_BODY_MAX_CHARS
             ),
             '',
+            f'[Data]({ext_article.relative_article_file_path_unix})',
+            '',
+            f'[Extended Data]({ext_article.relative_ext_article_file_path_unix})',
+            '',
             '---' '',
         ]
 

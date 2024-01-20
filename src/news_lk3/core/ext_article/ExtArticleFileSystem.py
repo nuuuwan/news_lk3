@@ -37,13 +37,16 @@ class ExtArticleFileSystem:
         )
 
     @staticmethod
-    def get_ext_article_file_name_only(url):
+    def get_ext_article_file_name(url):
         h = Article.get_hash(url)
         return f'{h}.ext.json'
 
     @property
     def relative_ext_article_file_path(self):
-        return ExtArticleFileSystem.get_ext_article_file_name_only(self.url)
+        return os.path.join(
+            'ext_articles',
+            ExtArticleFileSystem.get_ext_article_file_name(self.url),
+        )
 
     @property
     def relative_ext_article_file_path_unix(self):

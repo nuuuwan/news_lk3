@@ -32,7 +32,8 @@ class Translator:
             )
             if result:
                 log.debug(
-                    f'"{text}" ({self.src})'+f' -> "{result.text}" ({self.dest})'
+                    f'"{text}" ({self.src})'
+                    + f' -> "{result.text}" ({self.dest})'
                 )
                 return result.text
         except Exception as e:
