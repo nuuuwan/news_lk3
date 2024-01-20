@@ -9,6 +9,15 @@ log = Log('upload_ext_data')
 MAX_N_STORED = 10
 
 
+def init():
+    for dir in [ExtArticle.DIR_REPO_ARTICLES_EXT]:
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+            log.info(f'Created {dir}.')
+        else:
+            log.debug(f'{dir} exists. Not creating.')
+
+
 def main():
     n_stored = 0
     for article in Article.list_from_remote():
