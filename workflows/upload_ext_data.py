@@ -19,6 +19,7 @@ def init():
 
 
 def main():
+    init()
     n_stored = 0
     for article in Article.list_from_remote():
         ext_article = ExtArticle.from_article(article, force_extend=True)
