@@ -53,7 +53,9 @@ class ExtArticleBase(Article):
                     )
                     result_text = result.text if result else None
                 except Exception as e:
-                    log.error(f'Could not translate "{text}" ({src}) to {dest}: "{e}"')
+                    log.error(
+                        f'Could not translate "{text}" ({src}) to {dest}: "{e}"'
+                    )
                     result_text = None
 
                 log.debug(f'{text} -> {result_text}')
