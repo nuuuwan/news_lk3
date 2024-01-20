@@ -6,7 +6,7 @@ from news_lk3.core import Article, ExtArticle
 from _upload_common import init_dir
 log = Log('upload_ext_data')
 
-MAX_N_STORED = 10
+MAX_N_STORED = 1
 
 
 def main():
