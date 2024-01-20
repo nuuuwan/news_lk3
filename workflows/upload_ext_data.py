@@ -13,7 +13,6 @@ MAX_RUNNING_TIME_S = 1 * SECONDS_IN.MINUTE
 
 def main():
     t_start = time.time()
-    init_dir()
     articles = Article.list_from_remote()
     init_dir()
     for article in articles:
