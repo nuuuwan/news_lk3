@@ -61,6 +61,11 @@ class ArticleFileSystem:
                 continue
             article = cls.load_from_file(child.path)
             articles.append(article)
-        n_articles = len(articles)
+
+        sorted_articles = sorted(
+            articles, key=lambda article: article.time_ut, reverse=True
+        )
+
+        n_articles = len(sorted_articles)
         log.debug(f'Loaded {n_articles} articles')
-        return articles
+        return sorted_articles

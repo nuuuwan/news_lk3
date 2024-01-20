@@ -87,9 +87,7 @@ class ReadMe(ArticleSummary):
 
     def write(self):
         articles = Article.list_from_remote()
-        sorted_articles = sorted(
-            articles, key=lambda a: a.time_ut, reverse=True
-        )
+  
 
         lines = [
             '# Newspaper Articles from Sri Lanka :sri_lanka:',
@@ -97,12 +95,12 @@ class ReadMe(ArticleSummary):
             f'As of **{TIME_FORMAT_TIME.stringify(Time.now())}**',
             '',
         ]
-        lines.extend(ReadMe.render_article_stats(sorted_articles))
-        lines.extend(ReadMe.render_ext_article_stats(sorted_articles))
+        lines.extend(ReadMe.render_article_stats(articles))
+        lines.extend(ReadMe.render_ext_article_stats(articles))
 
         lines.extend([f'## Latest {ReadMe.N_DISPLAY:,} Articles ', ''])
         prev_date_str = None
-        for article in sorted_articles[: self.N_DISPLAY]:
+        for article in articles[: self.N_DISPLAY]:
             date_str = ReadMe.TIME_FORMAT_DATE_STR.stringify(
                 Time(article.time_ut)
             )
