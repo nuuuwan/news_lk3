@@ -9,6 +9,7 @@ log = Log('ExtArticleBase')
 
 COMMON_TRANSLATOR = Translator()
 
+
 class ExtArticleBase(Article):
     def __init__(
         self,
