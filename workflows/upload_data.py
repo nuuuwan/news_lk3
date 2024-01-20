@@ -2,14 +2,15 @@ import os
 import random
 
 from news_lk3._utils import log
-from news_lk3.core.article.Article import Article
+from news_lk3.core import Article, ExtArticle
 from news_lk3.custom_newspapers import newspaper_class_list
 
 MAX_ARTICLES_TO_UPLOAD = 80
 
 
 def init():
-    for dir in [Article.DIR_REPO, Article.DIR_REPO_ARTICLES]:
+    for dir in [Article.DIR_REPO, Article.DIR_REPO_ARTICLES,
+                ExtArticle.DIR_REPO_ARTICLES_EXT]:
         if not os.path.exists(dir):
             os.makedirs(dir)
             log.info(f'Created {dir}.')

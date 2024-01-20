@@ -7,6 +7,7 @@ from utils import String, TimeFormat, mr
 from news_lk3._utils import log
 from news_lk3.base.WWW import WWW
 from news_lk3.core.article.Article import Article
+from news_lk3.core.ext_article.ExtArticle import ExtArticle
 
 MIN_ARTICLE_HTML_SIZE = 1_000
 MIN_CHARS_IN_BODY_LINE = 60
@@ -151,6 +152,8 @@ class AbstractNewsPaper(ABC):
         try:
             article = cls.parse_article(article_url)
             article.store()
+            ext_article = ExtArticle.from_article(article)
+            ext_article.store()
             return article
 
         except Exception as e:

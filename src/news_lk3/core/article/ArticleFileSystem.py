@@ -26,7 +26,9 @@ class ArticleFileSystem:
     @staticmethod
     def get_article_file(url):
         file_name_only = ArticleFileSystem.get_article_file_only(url)
-        return os.path.join(ArticleFileSystem.DIR_REPO_ARTICLES, file_name_only)
+        return os.path.join(
+            ArticleFileSystem.DIR_REPO_ARTICLES, file_name_only
+        )
 
     @staticmethod
     def load_d_from_file(article_file):

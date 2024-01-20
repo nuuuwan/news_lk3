@@ -27,6 +27,8 @@ class AdaDeranaSinhalaLk(AbstractNewsPaper):
         article_urls = []
         for div in soup.find_all('div', {'class': 'news-story'}):
             article_url = div.find('a').get('href')
+            if 'http' not in article_url:
+                article_url = 'http://sinhala.adaderana.lk/' + article_url
             article_urls.append(article_url)
         return article_urls
 

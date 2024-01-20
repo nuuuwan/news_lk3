@@ -3,3 +3,4 @@ bs4
 pytest
 selenium
 utils-nuuuwan
+googletrans
