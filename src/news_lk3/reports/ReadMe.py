@@ -17,7 +17,7 @@ class ReadMe(ArticleSummary):
     @staticmethod
     def render_article(article) -> list[str]:
         ea = ExtArticle.from_article(article, force_extend=False)
-        return [
+        lines = [
             f'### {ea.title_display}',
             '',
             f'*{TIME_FORMAT_TIME.stringify(Time(article.time_ut))}*'
@@ -28,10 +28,17 @@ class ReadMe(ArticleSummary):
             '',
             f'[Data]({ea.relative_article_file_path_unix})',
             '',
-            f'[Extended Data]({ea.relative_ext_article_file_path_unix})',
-            '',
-            '---' '',
         ]
+        if os.path.exists(ea.temp_ext_article_file_path):
+            lines.extend(
+                [
+                    '[Extended Data]'
+                    + f'({ea.relative_ext_article_file_path_unix})',
+                    '',
+                ]
+            )
+        lines.extend(['---', ''])
+        return lines
 
     @staticmethod
     def render_stats_line(label: str, value: int):
