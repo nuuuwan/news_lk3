@@ -1,8 +1,9 @@
+import random
 import time
 
 from googletrans import Translator
 from utils import Log
-import random
+
 from news_lk3.core.article.Article import Article
 
 log = Log('ExtArticleBase')
