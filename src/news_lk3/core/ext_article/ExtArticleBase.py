@@ -36,8 +36,10 @@ class ExtArticleBase(Article):
     @staticmethod
     def get_translated_text(article: Article):
         idx = {}
-        for target_lang in ['si', 'ta', 'en']:
-            if article.original_lang == target_lang:
+        src = article.original_lang
+
+        for dest in ['si', 'ta', 'en']:
+            if src == dest:
                 continue
 
             def translate_single(text):
@@ -46,12 +48,12 @@ class ExtArticleBase(Article):
                     time.sleep(TIME_SLEEP_S)
                     result = COMMON_TRANSLATOR.translate(
                         text,
-                        src=article.original_lang,
-                        dest=target_lang,
+                        src=src,
+                        dest=dest,
                     )
                     result_text = result.text if result else None
                 except Exception as e:
-                    log.debug(f'{text} -> {e}')
+                    log.error(f'Could not translate "{text}" ({src}) to {dest}: "{e}"')
                     result_text = None
 
                 log.debug(f'{text} -> {result_text}')
@@ -77,7 +79,7 @@ class ExtArticleBase(Article):
                     line,
                 )
                 translated_body_lines.append(translated_line)
-            idx[target_lang] = dict(
+            idx[dest] = dict(
                 title=translated_title,
                 body_lines=translated_body_lines,
             )
