@@ -3,25 +3,18 @@ import os
 from utils import Log
 
 from news_lk3.core import Article, ExtArticle
-
+from _upload_common import init_dir
 log = Log('upload_ext_data')
 
 MAX_N_STORED = 10
 
 
-def init():
-    for dir in [ExtArticle.DIR_REPO_ARTICLES_EXT]:
-        if not os.path.exists(dir):
-            os.makedirs(dir)
-            log.info(f'Created {dir}.')
-        else:
-            log.debug(f'{dir} exists. Not creating.')
-
-
 def main():
-    init()
+    init_dir()
     n_stored = 0
-    for article in Article.list_from_remote():
+    articles = Article.list_from_remote()
+    init_dir()
+    for article in articles:
         ext_article = ExtArticle.from_article(article, force_extend=True)
         if os.path.exists(ext_article.file_name):
             log.debug(f'{ext_article.file_name} exists. Skipping.')
