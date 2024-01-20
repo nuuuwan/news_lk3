@@ -36,12 +36,17 @@ class ExtArticleBase(Article):
         for target_lang in ['si', 'ta', 'en']:
 
             def translate(text):
-                result = translator.translate(
-                    text,
-                    src=article.original_lang,
-                    dest=target_lang,
-                )
-                result_text = result.text if result else None
+                try:
+                    result = translator.translate(
+                        text,
+                        src=article.original_lang,
+                        dest=target_lang,
+                    )
+                    result_text = result.text if result else None
+                except Exception as e:
+                    log.debug(f'{text} -> {e}')
+                    result_text = None
+
                 log.debug(f'{text} -> {result_text}')
                 return result_text
 
