@@ -10,7 +10,7 @@ log = Log('ReadMe')
 
 class ReadMe(ArticleSummary):
     PATH = os.path.join(Article.DIR_REPO, 'README.md')
-    N_DISPLAY = 5
+    N_DISPLAY = 100
     ARTICLE_BODY_MAX_CHARS = 480
     TIME_FORMAT_DATE_STR = TimeFormat('%Y-%m-%d (%A)')
 
