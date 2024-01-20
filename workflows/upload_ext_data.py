@@ -14,17 +14,11 @@ MAX_RUNNING_TIME_S = MAX_RUNNING_TIME_M * SECONDS_IN.MINUTE
 log.debug(f'{MAX_RUNNING_TIME_S=}')
 
 
-def cleanup_HACK():
-    for file_name in os.listdir(Article.DIR_REPO):
-        if file_name.endswith('.ext.json'):
-            os.remove(os.path.join(Article.DIR_REPO, file_name))
-
 
 def main():
     t_start = time.time()
     articles = Article.list_from_remote()
 
-    cleanup_HACK()
 
     for article in articles:
         d_time = time.time() - t_start
