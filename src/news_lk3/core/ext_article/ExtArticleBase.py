@@ -1,6 +1,6 @@
 from googletrans import Translator
 from utils import Log
-
+import time
 from news_lk3.core.article.Article import Article
 
 log = Log('ExtArticleBase')
@@ -34,9 +34,12 @@ class ExtArticleBase(Article):
         translator = Translator()
         idx = {}
         for target_lang in ['si', 'ta', 'en']:
+            if article.original_lang == target_lang:
+                continue
 
             def translate(text):
                 try:
+                    time.sleep(1)
                     result = translator.translate(
                         text,
                         src=article.original_lang,
@@ -50,8 +53,7 @@ class ExtArticleBase(Article):
                 log.debug(f'{text} -> {result_text}')
                 return result_text
 
-            if article.original_lang == target_lang:
-                continue
+         
             translated_title = translate(
                 article.original_title,
             )
