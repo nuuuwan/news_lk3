@@ -80,7 +80,7 @@ class ReadMe(ArticleSummary):
         return lines
 
     def write(self):
-        articles = self.articles
+        articles = Article.list_from_remote()
         sorted_articles = sorted(
             articles, key=lambda a: a.time_ut, reverse=True
         )

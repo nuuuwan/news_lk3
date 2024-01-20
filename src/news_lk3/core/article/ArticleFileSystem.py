@@ -1,7 +1,8 @@
 import os
 import tempfile
+from functools import cache
 
-from utils import JSONFile, Log, hashx
+from utils import Directory, Git, JSONFile, Log, hashx
 
 log = Log('ArticleLoader')
 
@@ -46,3 +47,20 @@ class ArticleFileSystem:
     def store(self):
         JSONFile(self.file_name).write(self.to_dict)
         log.info(f'Stored {self.file_name}.')
+
+    @classmethod
+    @cache
+    def list_from_remote(cls) -> list:
+        git = Git('https://github.com/nuuuwan/news_lk3_data.git')
+        git.clone(cls.DIR_REPO, force=False)
+        git.checkout('main')
+
+        articles = []
+        for child in Directory(cls.DIR_REPO_ARTICLES).children:
+            if isinstance(child, Directory) or child.ext != 'json':
+                continue
+            article = cls.load_from_file(child.path)
+            articles.append(article)
+        n_articles = len(articles)
+        log.debug(f'Loaded {n_articles} articles')
+        return articles

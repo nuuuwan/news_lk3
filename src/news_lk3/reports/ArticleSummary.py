@@ -1,7 +1,7 @@
 import os
 from functools import cached_property
 
-from utils import TIME_FORMAT_TIME, Directory, Git, Log, Time, TSVFile
+from utils import TIME_FORMAT_TIME, Directory, Log, Time, TSVFile
 
 from news_lk3.core import Article
 
@@ -10,25 +10,9 @@ log = Log('ArticleSummary')
 
 class ArticleSummary:
     @cached_property
-    def articles(self):
-        git = Git('https://github.com/nuuuwan/news_lk3_data.git')
-        git.clone(Article.DIR_REPO, force=False)
-        git.checkout('main')
-
-        articles = []
-        for child in Directory(Article.DIR_REPO_ARTICLES).children:
-            if isinstance(child, Directory) or child.ext != 'json':
-                continue
-            article = Article.load_from_file(child.path)
-            articles.append(article)
-        n_articles = len(articles)
-        log.debug(f'Loaded {n_articles} articles')
-        return articles
-
-    @cached_property
     def summary(self):
         d_list = []
-        for article in self.articles:
+        for article in Article.list_from_remote():
             d_list.append(
                 dict(
                     # more useful
