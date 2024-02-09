@@ -65,4 +65,4 @@ class ExtArticleFileSystem:
 
     def store(self):
         JSONFile(self.temp_ext_article_file_path).write(self.to_dict)
-        log.info(f'Stored {self.relative_ext_article_file_path}.')
+        log.info(f'Stored {self.temp_ext_article_file_path}.')

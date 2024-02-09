@@ -61,10 +61,6 @@ class ExtArticleBase(Article):
         )
 
     @property
-    def is_en(self):
-        return self.original_lang == 'en'
-
-    @property
     def has_en_translation(self):
         return self.translated_text and 'en' in self.translated_text
 

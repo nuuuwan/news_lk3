@@ -41,3 +41,7 @@ class ArticleBase:
 
     def __lt__(self, other):
         return self.time_ut < other.time_ut
+    
+    @property
+    def is_en(self):
+        return self.original_lang == 'en'
