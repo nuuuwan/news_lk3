@@ -60,7 +60,7 @@ class ExtArticleBase(Article):
     def get_summary_lines(translated_text) -> list[str]:
         if not (translated_text and translated_text['en']):
             return []
-        
+
         title = translated_text['en']['title']
         body_lines = translated_text['en']['body_lines']
         content_lines = [title] + body_lines
