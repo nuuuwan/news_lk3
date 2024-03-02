@@ -41,6 +41,12 @@ class ExtArticleRender:
         if not is_partial:
             display_lines.append(ExtArticleRender.END)
 
-        summary = '\n\n'.join(self.summary_lines_display)
-        body = '\n\n'.join(display_lines)
-        return f'*{summary}{ExtArticleRender.END_SUMMARY}*' + f'\n\n{body}'
+        lines = []
+        summary_lines = self.summary_lines_display
+        if summary_lines:
+            lines.extend(summary_lines)
+            lines.append(ExtArticleRender.END_SUMMARY)
+        if display_lines:
+            lines.extend(display_lines)
+
+        return '\n\n'.join(lines)
