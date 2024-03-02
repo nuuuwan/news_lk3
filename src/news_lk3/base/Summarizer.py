@@ -8,7 +8,7 @@ log = Log('Summarizer')
 
 class Summarizer:
     MAX_CHARS = 200
-    T_WAIT = 1
+    T_WAIT = 5
 
     def summarize(self, content_lines: list[str]) -> list[str]:
         content = '\n'.join(content_lines)
