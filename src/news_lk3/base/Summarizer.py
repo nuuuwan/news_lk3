@@ -1,3 +1,5 @@
+import time
+
 from pytgpt.phind import PHIND as bot_cls
 from utils import Log
 
@@ -6,14 +8,23 @@ log = Log('Summarizer')
 
 class Summarizer:
     MAX_CHARS = 200
+    T_WAIT = 1
 
     def summarize(self, content_lines: list[str]) -> list[str]:
-        bot = bot_cls()
         content = '\n'.join(content_lines)
-        summary = bot.chat(
-            f'Summarize the following into {Summarizer.MAX_CHARS} characters:'
-            + f'\n{content}'
-        )
+        try:
+            log.debug(f'😴 Sleeping for {Summarizer.T_WAIT}s...')
+            time.sleep(Summarizer.T_WAIT)
+            bot = bot_cls()
+            summary = bot.chat(
+                'Summarize the following into '
+                + f'{Summarizer.MAX_CHARS} characters:'
+                + f'\n{content}'
+            )
+        except Exception as e:
+            log.error(f'Failed to summarize: {e}')
+            return ''
+
         n_before = len(content)
         n_after = len(summary)
         log.info(f'Summarized {n_before} -> {n_after} chars.')
