@@ -5,3 +5,4 @@ selenium
 utils-nuuuwan
 googletrans==4.0.0-rc1
 python-tgpt
+g4f
