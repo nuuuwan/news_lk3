@@ -1,6 +1,6 @@
 from utils import Log
 
-from news_lk3.base import Translator
+from news_lk3.base import Summarizer, Translator
 from news_lk3.core.article.Article import Article
 
 log = Log('ExtArticleBase')
@@ -18,6 +18,7 @@ class ExtArticleBase(Article):
         original_body_lines: list[str],
         # (new) attributes
         translated_text: dict[str, dict[str, str]],
+        summary_lines: list[str],
     ):
         super().__init__(
             newspaper_id=newspaper_id,
@@ -28,6 +29,7 @@ class ExtArticleBase(Article):
             original_body_lines=original_body_lines,
         )
         self.translated_text = translated_text
+        self.summary_lines = summary_lines
 
     @staticmethod
     def get_translated_text(article: Article):
@@ -54,10 +56,18 @@ class ExtArticleBase(Article):
             )
         return idx
 
+    @staticmethod
+    def get_summary_lines(translated_text) -> list[str]:
+        title = translated_text['en']['title']
+        body_lines = translated_text['en']['body_lines']
+        content_lines = [title] + body_lines
+        return Summarizer().summarize(content_lines)
+
     @property
     def to_dict(self) -> dict:
         return dict(
             translated_text=self.translated_text,
+            summary_lines=self.summary_lines,
         )
 
     @property

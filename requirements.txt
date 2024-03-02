@@ -4,3 +4,4 @@ pytest
 selenium
 utils-nuuuwan
 googletrans==4.0.0-rc1
+python-tgpt

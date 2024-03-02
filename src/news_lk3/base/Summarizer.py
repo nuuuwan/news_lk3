@@ -1,16 +1,33 @@
+from pytgpt.phind import PHIND as bot_cls
+from utils import Log
+
+log = Log('Summarizer')
+
+
 class Summarizer:
-    def summarize(self, text: str) -> str:
-        raise NotImplementedError
+    MAX_CHARS = 200
+
+    def summarize(self, content_lines: list[str]) -> list[str]:
+        bot = bot_cls()
+        content = '\n'.join(content_lines)
+        summary = bot.chat(
+            f'Summarize the following into {Summarizer.MAX_CHARS} characters:'
+            + f'\n{content}'
+        )
+        n_before = len(content)
+        n_after = len(summary)
+        log.info(f'Summarized {n_before} -> {n_after} chars.')
+        return summary.split('\n')
 
 
 if __name__ == '__main__':
     text = '''
-As a child, Gandhi was described by his sister Raliat as "restless as mercury, either playing or roaming about. One of his favourite pastimes was twisting dogs' ears."[16] The Indian classics, especially the stories of Shravana and king Harishchandra, had a great impact on Gandhi in his childhood. In his autobiography, he states that they left an indelible impression on his mind. He writes: "It haunted me and I must have acted Harishchandra to myself times without number." Gandhi's early self-identification with truth and love as supreme values is traceable to these epic characters.[17][18]
+The ascension of Junius Richard Jayewardene to the premier seat of political power in 1977 paved the way for a drastic transformation of Sri Lanka’s politico-economic landscape and environment.
 
-The family's religious background was eclectic. Mohandas was born into a Gujarati Hindu Modh Bania family.[19][20] Gandhi's father Karamchand was Hindu and his mother Putlibai was from a Pranami Vaishnava Hindu family.[21][22] Gandhi's father was of Modh Baniya caste in the varna of Vaishya.[23] His mother came from the medieval Krishna bhakti-based Pranami tradition, whose religious texts include the Bhagavad Gita, the Bhagavata Purana, and a collection of 14 texts with teachings that the tradition believes to include the essence of the Vedas, the Quran and the Bible.[22][24] Gandhi was deeply influenced by his mother, an extremely pious lady who "would not think of taking her meals without her daily prayers... she would take the hardest vows and keep them without flinching. To keep two or three consecutive fasts was nothing to her."[25]
+J.R. Jayewardene known popularly as “JR” ushered in political, economic, and electoral changes that utterly changed Sri Lanka.  In the words of William Butler Yeats “All changed, changed utterly.”
 
+The advent of JR as Prime Minister in 1977 and as the first Executive President in 1978 saw great changes in three vital spheres. Firstly the economy was liberalised and free enterprise encouraged. Secondly the Westminster model of Parliamentary governance introduced by the British was turned into an executive presidency. Parliament was de-valued. Thirdly the prevailing “first past the post winner” electoral practice was replaced with the proportional representation scheme.
+These three changes have utterly changed Sri Lanka. JR’s right hand man or chief deputy in executing the economic changes was his Finance Minister Ronnie de Mel. Ronald Joseph Godfrey de Mel known as Ronnie de Mel and Ronnie, served in the Jayewardene Government as Finance Minister for a continuous stretch of 11 years from 1977 to 1988.  It was Ronnie who was instrumental in establishing a free or capitalist economy in Sri Lanka.
 
-Gandhi (right) with his eldest brother Laxmidas in 1886[26]
-At age 9, Gandhi entered the local school in Rajkot, near his home. There, he studied the rudiments of arithmetic, history, the Gujarati language and geography.[15] At the age of 11, he joined the High School in Rajkot, Alfred High School.[27] He was an average student, won some prizes, but was a shy and tongue tied student, with no interest in games; his only companions were books and school lessons.[28]
-    '''
+Ronnie de Mel born on 11 April 1925, passed away in Colombo at the age of 98 on 27 February 2024. The veteran politician represented the Devinuwara constituency in Parliament from 1967 to 1989 for a period of 20 years. He later served as Matara district MP from 1994 to 2001. Thereafter he was a national list MP from 2001 to 2004. The jewel in Ronnie de Mel’s parliamentary career crown was his lengthy stint as finance minister. This column focuses on Ronnie de Mel this week.    '''
     print(Summarizer().summarize(text))

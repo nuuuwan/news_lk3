@@ -27,9 +27,16 @@ class ExtArticleFileSystem:
             'translated_text',
             None,
         )
+        summary_lines = extended_data.get(
+            'summary_lines',
+            None,
+        )
+
         if force_extend:
             if not translated_text:
                 translated_text = cls.get_translated_text(article)
+            if not summary_lines:
+                summary_lines = cls.get_summary_lines(translated_text)
 
         return cls(
             newspaper_id=article.newspaper_id,
@@ -39,6 +46,7 @@ class ExtArticleFileSystem:
             original_title=article.original_title,
             original_body_lines=article.original_body_lines,
             translated_text=translated_text,
+            summary_lines=summary_lines,
         )
 
     @staticmethod
