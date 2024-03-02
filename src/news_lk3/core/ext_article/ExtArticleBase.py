@@ -58,7 +58,7 @@ class ExtArticleBase(Article):
 
     @staticmethod
     def get_summary_lines(translated_text) -> list[str]:
-        if not (translated_text and translated_text['en']):
+        if not (translated_text and 'en' in translated_text):
             return []
 
         title = translated_text['en']['title']
