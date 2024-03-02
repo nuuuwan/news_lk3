@@ -74,14 +74,3 @@ class ExtArticleBase(Article):
     def has_en_translation(self):
         return self.translated_text and 'en' in self.translated_text
 
-    @property
-    def title_display(self):
-        if self.is_en or not self.has_en_translation:
-            return self.original_title
-        return self.translated_text['en']['title']
-
-    @property
-    def body_lines_display(self):
-        if self.is_en or not self.has_en_translation:
-            return self.original_body_lines
-        return self.translated_text['en']['body_lines']
