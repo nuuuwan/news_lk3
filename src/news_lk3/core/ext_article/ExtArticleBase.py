@@ -58,6 +58,7 @@ class ExtArticleBase(Article):
 
     @staticmethod
     def get_summary_lines(translated_text) -> list[str]:
+        if 
         title = translated_text['en']['title']
         body_lines = translated_text['en']['body_lines']
         content_lines = [title] + body_lines
@@ -73,4 +74,3 @@ class ExtArticleBase(Article):
     @property
     def has_en_translation(self):
         return self.translated_text and 'en' in self.translated_text
-
