@@ -4,6 +4,7 @@ from functools import cache
 class ExtArticleRender:
     CONTINUED = '...'
     END = '◼️'
+    END_SUMMARY = '🟩'
 
     @property
     def title_display(self) -> str:
@@ -42,4 +43,4 @@ class ExtArticleRender:
 
         summary = '\n\n'.join(self.summary_lines_display)
         body = '\n\n'.join(display_lines)
-        return f'*{summary}*\n\n{body}'
+        return f'*{summary}{ExtArticleRender.END_SUMMARY}*' + f'\n\n{body}'
