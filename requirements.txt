@@ -1,3 +1,6 @@
+# HACK!
+numpy<2
+
 # Auto Generated
 bs4
 pytest
