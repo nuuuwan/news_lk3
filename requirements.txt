@@ -1,5 +1,6 @@
 # HACK!
 numpy<2
+curl_cffi
 
 # Auto Generated
 bs4
