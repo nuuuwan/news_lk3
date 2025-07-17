@@ -28,7 +28,7 @@ jobs:
           python workflows/upload_ext_data.py
 
       - name: Checkout repo branch data
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: "nuuuwan/news_lk3_data"
           token: "${{ secrets.REPO_TOKEN }}"
