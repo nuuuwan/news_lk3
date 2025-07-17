@@ -1,4 +1,4 @@
-python-tgpt>0.5.7
+python-tgpt>=0.5.7
 g4f>=0.5.7.3
 numpy>=1.24,<2.0
 curl_cffi>=0.5.9
