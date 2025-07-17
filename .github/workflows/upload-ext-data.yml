@@ -1,53 +1,49 @@
-name: workflows/upload_ext_data.py 
+name: workflows/upload_ext_data.py
 
 on:
   workflow_dispatch:
   schedule:
-    - cron:  "*/15 * * * *"
+    - cron: "*/15 * * * *"
 
 jobs:
   upload-ext-data:
-
     runs-on: ubuntu-latest
 
     steps:
-      
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
 
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
+      - name: Run - Upload
+        run: |
+          export PYTHONPATH="$PYTHONPATH:./src"
+          python workflows/upload_ext_data.py
 
+      - name: Checkout repo branch data
+        uses: actions/checkout@v3
+        with:
+          repository: "nuuuwan/news_lk3_data"
+          token: "${{ secrets.REPO_TOKEN }}"
+          ref: "main"
 
-    - name: Run - Upload
-      run: |
-        export PYTHONPATH="$PYTHONPATH:./src"
-        python workflows/upload_ext_data.py
+      - name: Copy data, and push to repo branch data
+        run: |
+          git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USER_NAME }}"
+          git pull origin main
 
-    - name: Checkout repo branch data
-      uses: actions/checkout@v3
-      with:
-        repository: 'nuuuwan/news_lk3_data'
-        token: "${{ secrets.REPO_TOKEN }}"
-        ref: "main"
+          cp -r /tmp/news_lk3_data/* .
+          echo "$(date) upload_ext_data" >> ./workflows.txt
 
-    - name: Copy data, and push to repo branch data
-      run: |
-        git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
-        git config --global user.name "${{ secrets.GIT_USER_NAME }}"
-        git pull origin main
+          git add .
+          git commit -m "Uploaded ext data"
 
-        cp -r /tmp/news_lk3_data/* .
-        echo "$(date) upload_ext_data" >> ./workflows.txt
-
-        git add .
-        git commit -m "Uploaded ext data"
-
-        git push origin main
+          git push origin main
