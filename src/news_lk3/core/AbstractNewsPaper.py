@@ -2,9 +2,8 @@ import os
 from abc import ABC
 
 from bs4 import BeautifulSoup
-from utils import String, TimeFormat, mr
+from utils import Log, String, TimeFormat, mr
 
-from news_lk3._utils import log
 from news_lk3.base import WWW
 from news_lk3.core.article.Article import Article
 
@@ -13,21 +12,24 @@ MIN_CHARS_IN_BODY_LINE = 60
 MIN_WORDS_IN_BODY_LINE = 10
 
 
+log = Log("AbstractNewsPaper")
+
+
 def is_valid_line(line):
     if len(line) < MIN_CHARS_IN_BODY_LINE:
         return False
-    if len(line.split(' ')) < MIN_WORDS_IN_BODY_LINE:
+    if len(line.split(" ")) < MIN_WORDS_IN_BODY_LINE:
         return False
     return True
 
 
 def is_html_valid(html):
     if not html:
-        log.warning('HTML is empty')
+        log.warning("HTML is empty")
         return False
 
     if len(html) < MIN_ARTICLE_HTML_SIZE:
-        log.warning('Insufficient HTML size')
+        log.warning("Insufficient HTML size")
         return False
 
     return True
@@ -55,7 +57,7 @@ class AbstractNewsPaper(ABC):
             return None
 
         if is_html_valid(html):
-            return BeautifulSoup(html, 'html.parser')
+            return BeautifulSoup(html, "html.parser")
         return None
 
     @classmethod
@@ -72,14 +74,14 @@ class AbstractNewsPaper(ABC):
 
     @classmethod
     def get_time_raw_format(cls):
-        return '%Y-%m-%d %H:%M:%S'
+        return "%Y-%m-%d %H:%M:%S"
 
     @classmethod
     def parse_time_ut(cls, soup):
-        meta_time = soup.find('meta', {'itemprop': 'datePublished'})
+        meta_time = soup.find("meta", {"itemprop": "datePublished"})
         return (
             TimeFormat(cls.get_time_raw_format())
-            .parse(meta_time.get('content').strip())
+            .parse(meta_time.get("content").strip())
             .ut
         )
 
@@ -104,14 +106,14 @@ class AbstractNewsPaper(ABC):
                 article_urls += cls.parse_article_urls(soup)
 
         newspaper_id = cls.get_newspaper_id()
-        log.info(f'Found {len(article_urls)} articles for {newspaper_id}')
+        log.info(f"Found {len(article_urls)} articles for {newspaper_id}")
         return article_urls
 
     @classmethod
     def parse_article(cls, article_url):
         soup = cls.get_soup(article_url)
         if not soup:
-            raise Exception(f'{article_url} has invalid HTML. Not parsing.')
+            raise Exception(f"{article_url} has invalid HTML. Not parsing.")
 
         original_lang = cls.get_original_lang()
         original_title = cls.parse_title(soup).strip()
@@ -142,10 +144,10 @@ class AbstractNewsPaper(ABC):
 
     @classmethod
     def parse_and_store_article(cls, article_url):
-        log.debug(f'[parse_and_store_article] {article_url}...')
+        log.debug(f"[parse_and_store_article] {article_url}...")
         article_file = Article.get_article_file_name(article_url)
         if os.path.exists(article_file):
-            log.info(f'{article_file} already exists. Not parsing.')
+            log.info(f"{article_file} already exists. Not parsing.")
             return None
 
         try:

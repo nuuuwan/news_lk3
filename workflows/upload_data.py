@@ -2,11 +2,13 @@ import os
 import random
 import time
 
-from utils import TimeUnit
+from utils import Log, TimeUnit
 
-from news_lk3._utils import log
 from news_lk3.core import Article
 from news_lk3.custom_newspapers import newspaper_class_list
+
+log = Log("upload_data")
+
 
 TEST_MODE = os.name == "nt"
 log.debug(f"{TEST_MODE=}")
