@@ -58,7 +58,7 @@ class ArticleFileSystem:
     @cache
     def list_from_remote(cls) -> list:
         git = Git("https://github.com/nuuuwan/news_lk3_data.git")
-        git.clone(cls.DIR_REPO, force=False)
+        git.clone(cls.DIR_REPO, branch_name="main")
         git.checkout("main")
 
         articles = []
