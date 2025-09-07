@@ -5,7 +5,9 @@ import time
 from utils import Log, TimeUnit
 
 from news_lk3.core import Article
-from news_lk3.custom_newspapers import newspaper_class_list
+from news_lk3.custom_newspapers.newspaper_class_list import (
+    newspaper_class_list,
+)
 
 log = Log("upload_data")
 
