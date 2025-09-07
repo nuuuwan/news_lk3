@@ -3,7 +3,7 @@ from utils import Log
 from news_lk3.base import Summarizer, Translator
 from news_lk3.core.article.Article import Article
 
-log = Log('ExtArticleBase')
+log = Log("ExtArticleBase")
 
 
 class ExtArticleBase(Article):
@@ -32,21 +32,21 @@ class ExtArticleBase(Article):
         self.summary_lines = summary_lines
 
     @staticmethod
-    def get_translated_text(article: Article):
+    async def get_translated_text(article: Article):
         idx = {}
         src = article.original_lang
 
-        for dest in ['si', 'ta', 'en']:
+        for dest in ["si", "ta", "en"]:
             if src == dest:
                 continue
             translator = Translator(src, dest)
 
-            translated_title = translator.translate(
+            translated_title = await translator.translate(
                 article.original_title,
             )
             translated_body_lines = []
             for line in article.original_body_lines:
-                translated_line = translator.translate(
+                translated_line = await translator.translate(
                     line,
                 )
                 translated_body_lines.append(translated_line)
@@ -58,11 +58,11 @@ class ExtArticleBase(Article):
 
     @staticmethod
     def get_summary_lines(translated_text) -> list[str]:
-        if not (translated_text and 'en' in translated_text):
+        if not (translated_text and "en" in translated_text):
             return []
 
-        title = translated_text['en']['title']
-        body_lines = translated_text['en']['body_lines']
+        title = translated_text["en"]["title"]
+        body_lines = translated_text["en"]["body_lines"]
         content_lines = [title] + body_lines
         return Summarizer().summarize(content_lines)
 
@@ -75,4 +75,4 @@ class ExtArticleBase(Article):
 
     @property
     def has_en_translation(self):
-        return self.translated_text and 'en' in self.translated_text
+        return self.translated_text and "en" in self.translated_text
