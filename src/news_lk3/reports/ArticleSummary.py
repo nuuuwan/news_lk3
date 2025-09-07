@@ -1,11 +1,11 @@
 import os
 from functools import cached_property
 
-from utils import TIME_FORMAT_TIME, Directory, Log, Time, TSVFile
+from utils import Directory, Log, Time, TimeFormat, TSVFile
 
 from news_lk3.core import Article
 
-log = Log('ArticleSummary')
+log = Log("ArticleSummary")
 
 
 class ArticleSummary:
@@ -17,9 +17,7 @@ class ArticleSummary:
                 dict(
                     # more useful
                     newspaper_id=article.newspaper_id,
-                    time_str=TIME_FORMAT_TIME.stringify(
-                        Time(article.time_ut)
-                    ),
+                    time_str=TimeFormat.TIME.format(Time(article.time_ut)),
                     original_title=article.original_title,
                     n_original_body_lines=len(article.original_body_lines),
                     # less useful
@@ -29,18 +27,18 @@ class ArticleSummary:
                     url=article.url,
                 )
             )
-        d_list = sorted(d_list, key=lambda d: d['time_ut'], reverse=True)
+        d_list = sorted(d_list, key=lambda d: d["time_ut"], reverse=True)
         return d_list
 
     @property
     def summary_file_path(self):
-        return os.path.join(Article.DIR_REPO, 'summary.tsv')
+        return os.path.join(Article.DIR_REPO, "summary.tsv")
 
     def store_summary(self):
         summary = self.summary
         if not Directory(Article.DIR_REPO).exists:
             os.makedirs(Article.DIR_REPO)
-            log.debug(f'Created directory {Article.DIR_REPO}')
+            log.debug(f"Created directory {Article.DIR_REPO}")
 
         TSVFile(self.summary_file_path).write(summary)
-        log.debug(f'Stored summary to {self.summary_file_path}')
+        log.debug(f"Stored summary to {self.summary_file_path}")

@@ -2,7 +2,7 @@ import os
 from abc import ABC
 
 from bs4 import BeautifulSoup
-from utils import Log, String, TimeFormat, mr
+from utils import Log, Parallel, String, TimeFormat
 
 from news_lk3.base import WWW
 from news_lk3.core.article.Article import Article
@@ -164,13 +164,17 @@ class AbstractNewsPaper(ABC):
     def scrape(cls):
         article_urls = cls.get_article_urls()
 
-        def func_inner(article_url):
-            article = cls.parse_and_store_article(article_url)
-            return article
+        workers = []
+        for article_url in article_urls:
 
-        article_list_raw = mr.map_parallel(
-            func_inner,
-            article_urls,
+            def worker(article_url=article_url):
+                article = cls.parse_and_store_article(article_url)
+                return article
+
+            workers.append(worker)
+
+        article_list_raw = Parallel.run(
+            workers,
             max_threads=6,
         )
 

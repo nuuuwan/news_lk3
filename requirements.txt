@@ -1,4 +1,4 @@
-python-tgpt
+
 g4f
 numpy<2.0
 curl_cffi
@@ -6,4 +6,4 @@ bs4
 pytest
 selenium
 utils-nuuuwan
-googletrans==4.0.0rc1
+googletrans
