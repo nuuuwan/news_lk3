@@ -43,8 +43,7 @@ def main():
         delta_t = time.time() - t_start
         log.debug(f'{delta_t=:.1f}s')
         if delta_t > MAX_RUNNING_TIME_S:
-            log.info(
-                f'{delta_t=:.1f}s > {MAX_RUNNING_TIME_S}s. Stopping.')
+            log.info(f'{delta_t=:.1f}s > {MAX_RUNNING_TIME_S}s. Stopping.')
             break
 
     log.info(f'Scraped {n_total} articles in total.')

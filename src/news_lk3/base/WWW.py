@@ -1,4 +1,5 @@
 """Utils for reading remote files."""
+
 import ssl
 
 import requests
