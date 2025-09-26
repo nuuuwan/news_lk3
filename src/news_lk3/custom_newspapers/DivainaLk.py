@@ -32,7 +32,9 @@ class DivainaLk(AbstractNewsPaper):
         time_ = soup.find("time", {"class": "date published"})
         assert time_
         return (
-            TimeFormat(TIME_RAW_FORMAT).parse(time_.get("datetime").strip()).ut
+            TimeFormat(TIME_RAW_FORMAT)
+            .parse(time_.get("datetime").strip())
+            .ut
         )
 
     @classmethod
