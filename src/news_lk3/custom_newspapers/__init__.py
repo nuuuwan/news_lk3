@@ -18,3 +18,23 @@ from news_lk3.custom_newspapers.LankadeepaLk import LankadeepaLk
 from news_lk3.custom_newspapers.NewsFirstLk import NewsFirstLk
 from news_lk3.custom_newspapers.TamilMirrorLk import TamilMirrorLk
 from news_lk3.custom_newspapers.VirakesariLk import VirakesariLk
+
+newspaper_class_list = [
+    AdaDeranaLk,
+    AdaDeranaSinhalaLk,
+    AdaLk,
+    BBCComSinhala,
+    CeylonTodayLk,
+    ColomboTelegraphCom,
+    DailyFtLk,
+    DailyMirrorLk,
+    DailyNewsLk,
+    DBSJeyarajCom,
+    DivainaLk,
+    EconomyNextCom,
+    IslandLk,
+    LankadeepaLk,
+    NewsFirstLk,
+    TamilMirrorLk,
+    VirakesariLk,
+]
