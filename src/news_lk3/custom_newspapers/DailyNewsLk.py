@@ -1,57 +1,66 @@
+import os
+
+from dateutil import parser
+
 from news_lk3.core import AbstractNewsPaper
 
+URL_BASE = "http://dailynews.lk"
 
-class DailyMirrorLk(AbstractNewsPaper):
-    @classmethod
-    def get_time_raw_format(cls):
-        return "%Y-%m-%d %H:%M:%S"
-        # return '%d %B %Y %I:%M %p' # previous
 
+class DailyNewsLk(AbstractNewsPaper):
     @classmethod
     def get_index_urls(cls):
-        return [
-            "https://www.dailymirror.lk/latest-news/342",
-            "https://www.dailymirror.lk/top-storys/155",
-            "https://www.dailymirror.lk/business",
-            "https://www.dailymirror.lk/opinion/231",
-        ]
+        index_urls = []
+        for category in [
+            "local",
+            "politics",
+            "sports",
+            "editorial",
+            "business",
+            "featured",
+            "entertainment",
+            "events",
+            "lawnorder",
+        ]:
+            index_urls.append(os.path.join(URL_BASE, "category", category))
+        return index_urls
 
     @classmethod
     def parse_article_urls(cls, soup):
         article_urls = []
-        for div in soup.find_all("div", {"class": "col-md-8"}):
-            a_list = div.find_all("a")
-            for a in a_list:
-                article_url = a.get("href")
-                if article_url == "#000000":
-                    continue
-                has_invalid_keyword = False
-                for invalid_keyword in [
-                    "dailymirrorepaper",
-                    "lk/print",
-                    "lk/australia",
-                ]:
-                    if invalid_keyword in article_url:
-                        has_invalid_keyword = True
-                        break
-                if has_invalid_keyword:
-                    continue
-                article_urls.append(article_url)
+
+        for li in soup.find_all(
+            "li", {"class": "grid-style grid-2-style"}
+        ) + soup.find_all(
+            "li", {"class": "list-post penci-item-listp penci-slistp"}
+        ):
+            article_url = os.path.join(URL_BASE, li.find("a").get("href"))
+            article_urls.append(article_url)
         return article_urls
 
     @classmethod
+    def parse_time_ut(cls, soup):
+        div_time = soup.find("div", {"class": "post-box-meta-single"})
+        assert div_time, "[parse_time_ut] div_time not found"
+        span = div_time.find("span")
+        assert span, "[parse_time_ut] span not found"
+        d = parser.parse(span.text)
+        return int(d.timestamp())
+
+    @classmethod
     def parse_title(cls, soup):
-        h1 = soup.find("h1", {"class": "inner_header"})
-        assert h1, "[parse_title] no h1"
+        h1 = soup.find("h1", {"class": "post-title"})
+        assert h1, "[parse_title] h1 not found"
         return h1.text
 
     @classmethod
     def parse_body_lines(cls, soup):
-        div_content = soup.find("div", {"class": "a-content"})
-        assert div_content, "[parse_body_lines] no div_content"
-        return list(
-            map(
-                lambda line: line.strip(),
-                div_content.text.strip().split("\n"),
-            )
+        div_body = soup.find(
+            "div", {"class": "inner-post-entry entry-content"}
         )
+        assert div_body, "[parse_body_lines] div_body not found"
+
+        body_lines = []
+        for p in div_body.find_all("p"):
+            body_lines.append(p.text.strip())
+        return body_lines
