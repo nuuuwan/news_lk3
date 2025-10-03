@@ -16,5 +16,6 @@ from news_lk3.custom_newspapers.EconomyNextCom import EconomyNextCom
 from news_lk3.custom_newspapers.IslandLk import IslandLk
 from news_lk3.custom_newspapers.LankadeepaLk import LankadeepaLk
 from news_lk3.custom_newspapers.NewsFirstLk import NewsFirstLk
+from news_lk3.custom_newspapers.NewspaperFactory import NewspaperFactory
 from news_lk3.custom_newspapers.TamilMirrorLk import TamilMirrorLk
 from news_lk3.custom_newspapers.VirakesariLk import VirakesariLk

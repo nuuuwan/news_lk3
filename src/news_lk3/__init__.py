@@ -11,6 +11,6 @@ from news_lk3.custom_newspapers import (AdaDeranaLk, AdaDeranaSinhalaLk, AdaLk,
                                         DailyMirrorLk, DailyNewsLk,
                                         DBSJeyarajCom, DivainaLk,
                                         EconomyNextCom, IslandLk, LankadeepaLk,
-                                        NewsFirstLk, TamilMirrorLk,
-                                        VirakesariLk)
+                                        NewsFirstLk, NewspaperFactory,
+                                        TamilMirrorLk, VirakesariLk)
 from news_lk3.reports import ArticleSummary, ReadMe

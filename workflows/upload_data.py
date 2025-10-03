@@ -5,7 +5,7 @@ import time
 from utils import Log, TimeUnit
 
 from news_lk3.core import Article
-from news_lk3.custom_newspapers import newspaper_class_list
+from news_lk3.custom_newspapers import NewspaperFactory
 
 log = Log("upload_data")
 
@@ -27,7 +27,7 @@ def init_dirs():
 def main():
     t_start = time.time()
     init_dirs()
-
+    newspaper_class_list = NewspaperFactory.list_all_classes()
     random.shuffle(newspaper_class_list)
     n = len(newspaper_class_list)
     n_total = 0
