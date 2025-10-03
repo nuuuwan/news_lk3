@@ -2,7 +2,7 @@ import os
 import tempfile
 from functools import cache
 
-from utils import Directory, Git, Hash, JSONFile, Log
+from utils import Git, Hash, JSONFile, Log
 
 log = Log("ArticleLoader")
 
@@ -62,9 +62,10 @@ class ArticleFileSystem:
         git.checkout("main")
 
         articles = []
-        for child in Directory(cls.DIR_REPO_ARTICLES).children:
-            if isinstance(child, Directory) or child.ext != "json":
+        for child_name in os.listdir(cls.DIR_REPO_ARTICLES):
+            if not child_name.endswith(".json"):
                 continue
+            child = os.path.join(cls.DIR_REPO_ARTICLES, child_name)
             article = cls.load_from_file(child.path)
             articles.append(article)
 

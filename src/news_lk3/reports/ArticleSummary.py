@@ -1,7 +1,7 @@
 import os
 from functools import cached_property
 
-from utils import Directory, Log, Time, TimeFormat, TSVFile
+from utils import Log, Time, TimeFormat, TSVFile
 
 from news_lk3.core import Article
 
@@ -36,7 +36,7 @@ class ArticleSummary:
 
     def store_summary(self):
         summary = self.summary
-        if not Directory(Article.DIR_REPO).exists:
+        if not os.path.exists(Article.DIR_REPO):
             os.makedirs(Article.DIR_REPO)
             log.debug(f"Created directory {Article.DIR_REPO}")
 
