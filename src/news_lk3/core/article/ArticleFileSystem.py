@@ -65,8 +65,8 @@ class ArticleFileSystem:
         for child_name in os.listdir(cls.DIR_REPO_ARTICLES):
             if not child_name.endswith(".json"):
                 continue
-            child = os.path.join(cls.DIR_REPO_ARTICLES, child_name)
-            article = cls.load_from_file(child.path)
+            child_path = os.path.join(cls.DIR_REPO_ARTICLES, child_name)
+            article = cls.load_from_file(child_path)
             articles.append(article)
 
         sorted_articles = sorted(
