@@ -1,7 +1,6 @@
 import asyncio
 import random
 import time
-from functools import cache
 
 from googletrans import Translator as GoogleTranslator
 from utils import Log
@@ -48,7 +47,9 @@ class Translator:
         sentences = text.split(DELIM)
         translated_sentences = []
         for sentence in sentences:
-            translated_sentence = await self.translate_single(sentence.strip())
+            translated_sentence = await self.translate_single(
+                sentence.strip()
+            )
             if translated_sentence is None:
                 translated_sentence = sentence
             translated_sentences.append(translated_sentence)

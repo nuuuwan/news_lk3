@@ -27,7 +27,9 @@ def main():
 
         ea = ExtArticle.from_article(article, force_extend=True)
         if os.path.exists(ea.relative_ext_article_file_path):
-            log.debug(f"{ea.relative_ext_article_file_path} exists. Skipping.")
+            log.debug(
+                f"{ea.relative_ext_article_file_path} exists. Skipping."
+            )
             continue
         ea.store()
 

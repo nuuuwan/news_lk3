@@ -35,7 +35,9 @@ class ExtArticleFileSystem:
 
         if force_extend:
             if not translated_text:
-                translated_text = asyncio.run(cls.get_translated_text(article))
+                translated_text = asyncio.run(
+                    cls.get_translated_text(article)
+                )
             if not summary_lines:
                 summary_lines = cls.get_summary_lines(translated_text)
 

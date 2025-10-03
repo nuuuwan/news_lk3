@@ -2,9 +2,8 @@ import os
 from abc import ABC
 
 from bs4 import BeautifulSoup
-from utils import Log, Parallel, String, TimeFormat
+from utils import WWW, Log, Parallel, String, TimeFormat
 
-from news_lk3.base import WWW
 from news_lk3.core.article.Article import Article
 
 MIN_ARTICLE_HTML_SIZE = 1_000
@@ -49,7 +48,7 @@ class AbstractNewsPaper(ABC):
         try:
             www = WWW(url)
             if cls.use_selenium():
-                html = www.readSelenium()
+                html = www.read_with_selenium()
             else:
                 html = www.read()
         except Exception as e:
