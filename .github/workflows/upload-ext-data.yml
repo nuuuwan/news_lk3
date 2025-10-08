@@ -2,8 +2,6 @@ name: workflows/upload_ext_data.py
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/15 * * * *"
 
 jobs:
   upload-ext-data:

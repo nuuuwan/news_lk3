@@ -2,9 +2,6 @@ name: workflows/upload_data.py
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/15 * * * *"
-
 jobs:
   upload-data:
     runs-on: ubuntu-latest
